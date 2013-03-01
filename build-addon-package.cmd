@@ -1,0 +1,1 @@
+nuget pack TechFellow.ScheduledJobOverview.Addon.csproj -Properties Configuration="Release - AddOn"
