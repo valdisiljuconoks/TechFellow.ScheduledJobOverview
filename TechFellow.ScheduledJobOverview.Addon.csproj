@@ -58,12 +58,12 @@
     <Compile Include="Const.cs" />
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="DatabaseJobAdapter.cs" />
-    <Compile Include="Fake.Master.cs">
-      <DependentUpon>Fake.Master</DependentUpon>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Fake.Master.designer.cs">
-      <DependentUpon>Fake.Master</DependentUpon>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="InitializeModule.cs" />
     <Compile Include="Models\JobDescriptionViewModel.cs" />
@@ -83,9 +83,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <EmbeddedResource Include="overview.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </EmbeddedResource>
@@ -93,7 +90,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Fake.Master">
+    <EmbeddedResource Include="Site.Master">
       <SubType>ASPXCodeBehind</SubType>
     </EmbeddedResource>
     <None Include="build-addon-package.cmd" />

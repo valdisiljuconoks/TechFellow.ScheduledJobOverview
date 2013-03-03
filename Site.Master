@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="TechFellow.ScheduledJobOverview.Fake" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="TechFellow.ScheduledJobOverview.Site" %>
 
 <!DOCTYPE html>
 

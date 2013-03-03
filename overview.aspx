@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" EnableEventValidation="false" EnableViewState="false" Inherits="TechFellow.ScheduledJobOverview.overview" 
-         MasterPageFile="/modules/TechFellow.ScheduledJobOverview/TechFellow.ScheduledJobOverview.Fake.Master" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" EnableViewState="false" Inherits="TechFellow.ScheduledJobOverview.overview" MasterPageFile="/modules/TechFellow.ScheduledJobOverview/TechFellow.ScheduledJobOverview.Site.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainRegion" runat="server">
     <script type="text/javascript">
@@ -28,11 +27,7 @@
                     <td style="white-space: nowrap"><%# Item.Interval %></td>
                     <td <%# Item.IsLastExecuteSuccessful.HasValue && !Item.IsLastExecuteSuccessful.Value ? " style=\"color: red; font-weight: bold\"" : "" %>><%# Item.IsLastExecuteSuccessful.HasValue ? (Item.IsLastExecuteSuccessful.Value ? "Yes" : "No") : "" %></td>
                     <td style="white-space: nowrap"><%# (Item.LastExecute.HasValue && Item.LastExecute.Value != DateTime.MinValue) ? Item.LastExecute.Value.ToString("yyyy-MM-dd mm:ss") : "" %></td>
-                    <td><span class="epi-cmsButton">
-                        
-                        <input type="button" value="" onclick="showDetails(<%# Item.Id %>); return false;" class="epi-cmsButton-tools epi-cmsButton-ViewMode">
-
-                        <%--<asp:Button CssClass="epi-cmsButton-tools epi-cmsButton-ViewMode" ID="navigateButton" runat="server" OnClientClick="test(<%# Item.Id %>);" />--%></span></td>
+                    <td><span class="epi-cmsButton"><input type="button" value="" onclick="showDetails(<%# Item.Id %>); return false;" class="epi-cmsButton-tools epi-cmsButton-ViewMode"></span></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

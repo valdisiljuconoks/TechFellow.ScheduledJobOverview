@@ -27,12 +27,5 @@ namespace TechFellow.ScheduledJobOverview
             this.rptJobs.DataSource = repository.GetList();
             this.rptJobs.DataBind();
         }
-
-        protected override void OnPreInit(EventArgs e)
-        {
-            base.OnPreInit(e);
-            //MasterPageFile = ResolveUrlFromUI("MasterPages/EPiServerUI.Master");
-            SystemMessageContainer.Heading = "Scheduled Job Overview";
-        }
     }
 }
