@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
 using EPiServer.Security;
 
@@ -6,7 +7,12 @@ namespace TechFellow.ScheduledJobOverview
 {
     public class ModuleRoute : Route
     {
-        public ModuleRoute(string url, string physicalFile) : base(url, new PageRouteHandler(physicalFile, false))
+        public ModuleRoute(string url) : base(url, new MvcRouteHandler())
+        {
+        }
+
+        public ModuleRoute(string url, string physicalFile)
+            : base(url, new PageRouteHandler(physicalFile, false))
         {
         }
 

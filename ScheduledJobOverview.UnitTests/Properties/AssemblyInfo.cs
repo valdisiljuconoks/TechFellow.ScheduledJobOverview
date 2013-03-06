@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TechFellow.ScheduledJobOverview")]
-[assembly: AssemblyDescription("EPiServer Scheduled job overview plugin. Gives you an easy way to overview all of your scheduled jobs.")]
+[assembly: AssemblyTitle("ScheduledJobOverview.UnitTests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Tech Fellow Consulting")]
-[assembly: AssemblyProduct("EPiServer Scheduled Job Overview")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ScheduledJobOverview.UnitTests")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("14686023-2898-4b8b-a503-d802c1429f73")]
+[assembly: Guid("325c9827-7422-4ebe-959e-5bff7b8f839f")]
 
 // Version information for an assembly consists of the following four values:
 //

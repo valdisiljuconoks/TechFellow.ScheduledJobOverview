@@ -1,4 +1,5 @@
-﻿using System.Web.Routing;
+﻿using System.Web.Mvc;
+using System.Web.Routing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Web.Hosting;
@@ -19,9 +20,15 @@ namespace TechFellow.ScheduledJobOverview
 #if !ADDON
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
 
-            RouteTable.Routes.Add("ScheduledJobPlugin",
-                                  new ModuleRoute("modules/" + Const.ModuleName + "/overview",
-                                                  "~/modules/" + Const.ModuleName + "/" + Const.ModuleName + ".overview.aspx"));
+            //RouteTable.Routes.Add("ScheduledJobPlugin",
+            //                      new ModuleRoute("modules/" + Const.ModuleName + "/overview",
+            //                                      "~/modules/" + Const.ModuleName + "/" + Const.ModuleName + ".overview.aspx"));
+
+            RouteTable.Routes.MapRoute("ScheduledJobPlugin",
+                                       "modules/" + Const.ModuleName + "/{controller}/{action}",
+                                       new { controller = "Overview", action = "Index" });
+
+            ViewEngines.Engines.Add(new CustomViewEngine());
 #endif
         }
 
