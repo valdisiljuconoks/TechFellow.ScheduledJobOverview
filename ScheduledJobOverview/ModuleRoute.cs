@@ -11,11 +11,6 @@ namespace TechFellow.ScheduledJobOverview
         {
         }
 
-        public ModuleRoute(string url, string physicalFile)
-            : base(url, new PageRouteHandler(physicalFile, false))
-        {
-        }
-
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
             if (!httpContext.Request.RawUrl.Contains(Const.ModuleName) || !PrincipalInfo.HasAdminAccess)

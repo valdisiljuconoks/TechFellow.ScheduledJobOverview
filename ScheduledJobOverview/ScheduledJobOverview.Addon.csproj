@@ -49,8 +49,6 @@
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
-      <HintPath>..\..\..\..\Sites\Enoteca7\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +59,6 @@
     <Compile Include="DatabaseJobAdapter.cs" />
     <Compile Include="InitializeModule.cs" />
     <Compile Include="Models\JobDescriptionViewModel.cs" />
-    <Compile Include="ModuleUriHelper.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="ResourceVirtualFile.cs" />
     <Compile Include="ModuleRoute.cs" />
@@ -78,10 +75,7 @@
     <None Include="build-addon-package.cmd" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\Site.Master" />
-    <Content Include="TechFellow.ScheduledJobOverview.Addon.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Browsers\ScheduledJobOverviewAdapterMappings.browser.transform" />
+    <None Include="ScheduledJobOverview.Addon.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.config">
@@ -102,9 +96,9 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>19547</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:57650/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.UI.Adapters;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using EPiServer.Shell.Web;
 
 namespace TechFellow.ScheduledJobOverview
 {
@@ -31,7 +34,15 @@ namespace TechFellow.ScheduledJobOverview
 
         private void NavigateButtonOnClick(object sender, EventArgs eventArgs)
         {
-            HttpContext.Current.Response.RedirectToRoute("ScheduledJobPlugin");
+            var url = UrlHelper.GenerateUrl("ScheduledJobPlugin",
+                                  "Index",
+                                  "Overview",
+                                  new RouteValueDictionary(),
+                                  RouteTable.Routes,
+                                  HttpContext.Current.GetRequestContext(),
+                                  false);
+
+            HttpContext.Current.Response.Redirect(url);
         }
     }
 }
