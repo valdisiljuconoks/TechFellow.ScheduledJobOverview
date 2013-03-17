@@ -3,7 +3,7 @@
   <metadata>
     <id>$id$.CMS6</id>
     <version>$version$</version>
-    <title>$title$</title>
+    <title>$title$.CMS6</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
