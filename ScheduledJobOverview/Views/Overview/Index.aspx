@@ -12,7 +12,7 @@
         }
     </script>
     <div class="epi-padding" style="display: block;">
-        <table class="epi-default" style="border-collapse: collapse; border-style: None;">
+        <table class="epi-default" style="border-collapse: collapse; border-style: none; width: 95%">
             <tbody>
                 <th class="epitableheading" scope="col">Name</th>
                 <th class="epitableheading" scope="col">Description</th>
@@ -23,13 +23,13 @@
                 <th class="epitableheading" scope="col">Details</th>
                 <% foreach (var item in Model) { %>
                 <tr>
-                    <td style="white-space: nowrap"><%: item.Name %></td>
-                    <td><%: item.Description %></td>
-                    <td <%= !item.IsEnabled ? " style=\"color: red; font-weight: bold\"" : "" %>><%: item.IsEnabled ? "Yes" : "No" %></td>
-                    <td style="white-space: nowrap"><%: item.Interval %></td>
-                    <td <%= item.IsLastExecuteSuccessful.HasValue && !item.IsLastExecuteSuccessful.Value ? " style=\"color: red; font-weight: bold\"" : "" %>><%: item.IsLastExecuteSuccessful.HasValue ? (item.IsLastExecuteSuccessful.Value ? "Yes" : "No") : "" %></td>
-                    <td style="white-space: nowrap"><%: (item.LastExecute.HasValue && item.LastExecute.Value != DateTime.MinValue) ? item.LastExecute.Value.ToString("yyyy-MM-dd mm:ss") : "" %></td>
-                    <td><span class="epi-cmsButton"><input type="button" value="" onclick=" showDetails(<%: item.Id %>); return false; " class="epi-cmsButton-tools epi-cmsButton-ViewMode"></span></td>
+                    <td style="white-space: nowrap"><%= item.Name %></td>
+                    <td><%= item.Description %></td>
+                    <td <%= !item.IsEnabled ? " style=\"color: red; font-weight: bold\"" : "" %>><%= item.IsEnabled ? "Yes" : "No" %></td>
+                    <td style="white-space: nowrap"><%= item.Interval %></td>
+                    <td <%= item.IsLastExecuteSuccessful.HasValue && !item.IsLastExecuteSuccessful.Value ? " style=\"color: red; font-weight: bold\"" : "" %>><%= item.IsLastExecuteSuccessful.HasValue ? (item.IsLastExecuteSuccessful.Value ? "Yes" : "No") : "" %></td>
+                    <td style="white-space: nowrap"><%= (item.LastExecute.HasValue && item.LastExecute.Value != DateTime.MinValue) ? item.LastExecute.Value.ToString("yyyy-MM-dd mm:ss") : "" %></td>
+                    <td><span class="epi-cmsButton"><input type="button" value="" onclick=" showDetails(<%= item.Id %>); return false; " class="epi-cmsButton-tools epi-cmsButton-ViewMode"></span></td>
                 </tr>
                 <% } %>
             </tbody>
