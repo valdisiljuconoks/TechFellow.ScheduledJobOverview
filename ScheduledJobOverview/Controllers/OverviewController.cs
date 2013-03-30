@@ -7,8 +7,7 @@ namespace TechFellow.ScheduledJobOverview.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var repository = new JobRepository();
-            return View(repository.GetList());
+            return View();
         }
     }
 }
