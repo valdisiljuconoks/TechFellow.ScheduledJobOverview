@@ -9,7 +9,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        #sch-app-root .red-bold-No {
+        #sch-app-root .red-bold-false {
             color: red;
             font-weight: bold;
         }
@@ -28,12 +28,12 @@
                     <th class="epitableheading" scope="col">Last execute date</th>
                     <th class="epitableheading" scope="col">Details</th>
                     <tr data-ng-repeat="job in jobs">
-                        <td style="text-align: center"><img src="<%= Page.ClientScript.GetImageIncludes("spinner.gif") %>" alt="{{job.isRunning}}" style="display: {{job.isRunningDisplay}}" /></td>
+                        <td style="text-align: center"><img src="<%= Page.ClientScript.GetImageIncludes("spinner.gif") %>" alt="{{job.isRunning}}" data-ng-show="job.isRunning" /></td>
                         <td style="white-space: nowrap">{{job.name}}</td>
                         <td>{{job.description}}</td>
-                        <td class="red-bold-{{job.isEnabledDisplay}}">{{job.isEnabledDisplay}}</td>
+                        <td class="red-bold-{{job.isEnabled}}"><toggle-bool target-prop="{{job.isEnabled}}" /></td>
                         <td style="white-space: nowrap">{{job.interval}}</td>
-                        <td class="red-bold-{{job.isLastExecuteSuccessfulDisplay}}">{{job.isLastExecuteSuccessfulDisplay}}</td>
+                        <td class="red-bold-{{job.isLastExecuteSuccessful}}"><toggle-bool target-prop="{{job.isLastExecuteSuccessful}}" /></td>
                         <td style="white-space: nowrap">{{job.lastExecuteDisplay}}</td>
                         <td style="text-align: center"><span class="epi-cmsButton">
                             <input type="button" value="" data-ng-click="showDetails(job.id)" class="epi-cmsButton-tools epi-cmsButton-ViewMode"></span>

@@ -19,29 +19,8 @@ namespace TechFellow.ScheduledJobOverview.Models
             }
         }
         public bool IsEnabled { get; set; }
-        public string IsEnabledDisplay
-        {
-            get
-            {
-                return IsEnabled.ToYesNo();
-            }
-        }
         public bool? IsLastExecuteSuccessful { get; set; }
-        public string IsLastExecuteSuccessfulDisplay
-        {
-            get
-            {
-                return IsLastExecuteSuccessful.HasValue ? IsLastExecuteSuccessful.Value.ToYesNo() : string.Empty;
-            }
-        }
         public string Interval { get; set; }
         public bool IsRunning { get; set; }
-        public string IsRunningDisplay
-        {
-            get
-            {
-                return IsRunning ? "inline" : "none";
-            }
-        }
     }
 }

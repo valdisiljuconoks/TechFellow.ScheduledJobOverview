@@ -1,6 +1,22 @@
 ﻿;
 (function() {
     angular.module('schApp', [])
+        .directive('toggleBool', function() {
+            return {
+                restrict: 'E',
+                link: function (scope, element, attr) {
+                    attr.$observe('targetProp', function () {
+                        if (attr.targetProp) {
+                            element.html('Yes');
+                        } else {
+                            if (attr.targetProp != "") {
+                                element.html('No');
+                            }
+                        }
+                    });
+                }
+            };
+        })
         .controller('scheduledJobsController', function($scope, $http, $window, $timeout, baseUrl) {
             var serviceUrl = '/modules/TechFellow.ScheduledJobOverview/Api/JobInfo/';
 

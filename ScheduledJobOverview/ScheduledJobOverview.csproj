@@ -71,7 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoolExtensions.cs" />
     <Compile Include="ClientScriptManagerExtensions.cs" />
     <Compile Include="CustomViewEngine.cs" />
     <Compile Include="Controllers\JobInfoController.cs" />
