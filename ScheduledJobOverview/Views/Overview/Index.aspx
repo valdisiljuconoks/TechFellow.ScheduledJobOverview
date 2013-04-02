@@ -14,7 +14,7 @@
             font-weight: bold;
         }
     </style>
-    <div data-ng-controller="scheduledJobsController" id="sch-app-root" data-details-url="<%= UriSupport.ResolveUrlFromUIBySettings("Admin/DatabaseJob.aspx") %>" data-service-url="<%= Page.ClientScript.GetResourceUrl("Overview") %>">
+    <div data-ng-controller="scheduledJobsController" id="sch-app-root" data-details-url="<%= UriSupport.ResolveUrlFromUIBySettings("Admin/DatabaseJob.aspx") %>" data-service-url="<%= Page.GetResourceUrl("Overview") %>">
         <div class="epi-padding" style="display: block;">
             <input id="auto-refresh" type="checkbox" data-ng-model="autoRefresh"  style="margin: 5px"/><label for="auto-refresh">Auto refresh</label>
             <table class="epi-default" style="border-collapse: collapse; border-style: none; width: 95%">

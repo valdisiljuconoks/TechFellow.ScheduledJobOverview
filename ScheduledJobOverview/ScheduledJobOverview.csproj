@@ -60,13 +60,14 @@
     <Compile Include="DatabaseJobAdapter.cs" />
     <Compile Include="InitializeModule.cs" />
     <Compile Include="Models\JobDescriptionViewModel.cs" />
+    <Compile Include="PageExtensions.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="ResourceVirtualFile.cs" />
     <Compile Include="ModuleRoute.cs" />
+    <Compile Include="RuntimeInfo.cs" />
     <Compile Include="ToolsPluginRegistration.cs" />
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UrlToResourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Overview\Index.aspx" />

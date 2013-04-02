@@ -31,10 +31,30 @@ namespace TechFellow.ScheduledJobOverview
                            : base.GetFile(virtualPath);
         }
 
+        public static string CreateResourceUrl(string type, string resource)
+        {
+            return string.Format("{0}.{1}.{2}", Const.ModuleName, type, TranslateToResource(resource));
+        }
+
+        public static string TranslateToResource(string url)
+        {
+            if (url.Contains(Const.ModuleName))
+            {
+                url = url.Substring(url.IndexOf(Const.ModuleName, StringComparison.Ordinal));
+            }
+
+            if (url.StartsWith("/"))
+            {
+                url = url.Substring(1);
+            }
+
+            return url.Replace('/', '.');
+        }
+
         private static bool ShouldHandle(string virtualPath)
         {
             return VirtualPathUtility.ToAppRelative(virtualPath).Contains(Const.ModuleName)
-                   && resources.Contains(UrlToResourceHelper.TranslateToResource(virtualPath));
+                   && resources.Contains(TranslateToResource(virtualPath));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace TechFellow.ScheduledJobOverview
 
         public override Stream Open()
         {
-            return GetType().Assembly.GetManifestResourceStream(UrlToResourceHelper.TranslateToResource(this.fileName));
+            return GetType().Assembly.GetManifestResourceStream(ResourceProvider.TranslateToResource(this.fileName));
         }
     }
 }
