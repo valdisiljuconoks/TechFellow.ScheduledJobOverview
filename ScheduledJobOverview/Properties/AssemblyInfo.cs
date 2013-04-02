@@ -18,6 +18,7 @@ using TechFellow.ScheduledJobOverview;
 [assembly: AssemblyVersion("1.3.0.0")]
 [assembly: AssemblyFileVersion("1.3.0.0")]
 [assembly: AssemblyInformationalVersion("1.3.0")]
+[assembly: WebResource(Const.ModuleName + ".Scripts.angular.min.js", "text/javascript")]
 [assembly: WebResource(Const.ModuleName + ".Scripts.site.js", "text/javascript")]
 [assembly: WebResource(Const.ModuleName + ".Scripts.site.min.js", "text/javascript")]
 [assembly: WebResource(Const.ModuleName + ".Images.spinner.gif", "img/gif")]

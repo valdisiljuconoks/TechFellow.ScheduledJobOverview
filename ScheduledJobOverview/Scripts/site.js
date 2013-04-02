@@ -4,9 +4,9 @@
         .directive('toggleBool', function() {
             return {
                 restrict: 'E',
-                link: function (scope, element, attr) {
-                    attr.$observe('targetProp', function () {
-                        if (attr.targetProp) {
+                link: function(scope, element, attr) {
+                    attr.$observe('targetProp', function() {
+                        if (attr.targetProp == "true") {
                             element.html('Yes');
                         } else {
                             if (attr.targetProp != "") {
@@ -17,21 +17,19 @@
                 }
             };
         })
-        .controller('scheduledJobsController', function($scope, $http, $window, $timeout, baseUrl) {
-            var serviceUrl = '/modules/TechFellow.ScheduledJobOverview/Api/JobInfo/';
-
+        .controller('scheduledJobsController', function($scope, $http, $window, $timeout, serviceUrl, detailsUrl) {
             $scope.fetch = function() {
                 if ($scope.autoRefresh) {
-                    $http.get(serviceUrl + 'GetList').success(function (data) { $scope.jobs = data; });
+                    $http.get(serviceUrl + 'GetList').success(function(data) { $scope.jobs = data; });
                     $timeout(function() { $scope.fetch(); }, 5000);
                 }
             };
 
             $scope.showDetails = function(id) {
-                $window.location.href = baseUrl + '?pluginId=' + id;
+                $window.location.href = detailsUrl + '?pluginId=' + id;
             };
 
-            $scope.$watch('autoRefresh', function (newValue) {
+            $scope.$watch('autoRefresh', function(newValue) {
                 if (newValue) {
                     $scope.fetch();
                 }
@@ -39,5 +37,7 @@
 
             $scope.autoRefresh = true;
 
-        }).value('baseUrl', $('#sch-app-root').attr('data-details-url'));
+        })
+        .value('serviceUrl', $('#sch-app-root').attr('data-service-url'))
+        .value('detailsUrl', $('#sch-app-root').attr('data-details-url'));
 })();

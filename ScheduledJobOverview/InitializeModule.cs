@@ -4,8 +4,6 @@ using System.Web.Routing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Web.Hosting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using InitializationModule = EPiServer.Web.InitializationModule;
 
 namespace TechFellow.ScheduledJobOverview
@@ -22,22 +20,12 @@ namespace TechFellow.ScheduledJobOverview
         {
 #if !ADDON
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
-            RouteTable.Routes.MapRoute("ScheduledJobPlugin",
+            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin",
                                        "modules/" + Const.ModuleName + "/{controller}/{action}",
                                        new { controller = "Overview", action = "Index" });
 
-            RouteTable.Routes.MapHttpRoute("ScheduledJobDefaultApi",
-                                           "modules/" + Const.ModuleName + "/api/{controller}/{id}",
-                                           new { id = RouteParameter.Optional });
-
             ViewEngines.Engines.Add(new CustomViewEngine());
 #endif
-
-            var formatters = GlobalConfiguration.Configuration.Formatters;
-            var jsonFormatter = formatters.JsonFormatter;
-            var settings = jsonFormatter.SerializerSettings;
-            settings.Formatting = Formatting.Indented;
-            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
         public void Uninitialize(InitializationEngine context)

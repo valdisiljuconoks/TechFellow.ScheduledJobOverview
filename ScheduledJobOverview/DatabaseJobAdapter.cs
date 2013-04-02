@@ -34,7 +34,7 @@ namespace TechFellow.ScheduledJobOverview
 
         private void NavigateButtonOnClick(object sender, EventArgs eventArgs)
         {
-            var url = UrlHelper.GenerateUrl("ScheduledJobPlugin",
+            var url = UrlHelper.GenerateUrl("ScheduledJobOverviewPlugin",
                                   "Index",
                                   "Overview",
                                   new RouteValueDictionary(),

@@ -1,1 +1,1 @@
-nuget pack ScheduledJobOverview.Addon.csproj -Properties Configuration="Release"
+nuget pack ScheduledJobOverview.Addon.nuspec -Properties Configuration="Release"
