@@ -60,13 +60,14 @@
     <Compile Include="DatabaseJobAdapter.cs" />
     <Compile Include="InitializeModule.cs" />
     <Compile Include="Models\JobDescriptionViewModel.cs" />
+    <Compile Include="PageExtensions.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="ResourceVirtualFile.cs" />
     <Compile Include="ModuleRoute.cs" />
+    <Compile Include="RuntimeInfo.cs" />
     <Compile Include="ToolsPluginRegistration.cs" />
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UrlToResourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\spinner.gif" />
@@ -241,6 +242,8 @@
     <Content Include="Scripts\i18n\angular-locale_zh-hk.js" />
     <Content Include="Scripts\i18n\angular-locale_zh-tw.js" />
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
+    <Content Include="Scripts\jstd-scenario-adapter-config.js" />
+    <Content Include="Scripts\jstd-scenario-adapter.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\site.min.js">
       <DependentUpon>site.js</DependentUpon>
