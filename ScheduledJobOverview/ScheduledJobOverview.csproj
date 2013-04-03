@@ -82,6 +82,7 @@
     <EmbeddedResource Include="Scripts\site.min.js">
       <DependentUpon>site.js</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Browsers\ScheduledJobOverviewAdapterMappings.browser.transform">

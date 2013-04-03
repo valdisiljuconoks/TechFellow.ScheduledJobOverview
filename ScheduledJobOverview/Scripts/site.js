@@ -20,7 +20,13 @@
         .controller('scheduledJobsController', function($scope, $http, $window, $timeout, serviceUrl, detailsUrl) {
             $scope.fetch = function() {
                 if ($scope.autoRefresh) {
-                    $http.get(serviceUrl + 'GetList').success(function(data) { $scope.jobs = data; });
+                    $http.get(serviceUrl + 'GetList').success(function (data) {
+                        try {
+                            $scope.jobs = angular.fromJson(data);
+                        } catch (e) {
+                            // error may occur when service returns html for login page instead of json (unauthorized access, session expired, etc)
+                        }
+                    });
                     $timeout(function() { $scope.fetch(); }, 5000);
                 }
             };
