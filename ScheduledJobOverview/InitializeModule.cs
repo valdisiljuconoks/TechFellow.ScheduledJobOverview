@@ -17,14 +17,17 @@ namespace TechFellow.ScheduledJobOverview
 
         public void Initialize(InitializationEngine context)
         {
-#if !ADDON
+            if (RuntimeInfo.IsModule())
+            {
+                return;
+            }
+
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
-            RouteTable.Routes.MapRoute("ScheduledJobPlugin",
+            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin",
                                        "modules/" + Const.ModuleName + "/{controller}/{action}",
                                        new { controller = "Overview", action = "Index" });
 
             ViewEngines.Engines.Add(new CustomViewEngine());
-#endif
         }
 
         public void Uninitialize(InitializationEngine context)

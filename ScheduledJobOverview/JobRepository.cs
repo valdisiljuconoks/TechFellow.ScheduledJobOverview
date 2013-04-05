@@ -23,12 +23,13 @@ namespace TechFellow.ScheduledJobOverview
                                        InstanceId = job != null ? job.ID : Guid.Empty,
                                        Name = attr.DisplayName,
                                        Description = attr.Description,
-                                       IsEnabled = job != null && job.IsEnabled,
+                                       IsEnabled = (job != null && job.IsEnabled),
                                        Interval = job != null ? string.Format("{0} ({1})", job.IntervalLength, job.IntervalType) : "",
                                        IsLastExecuteSuccessful = (job != null && !job.HasLastExecutionFailed ? true : (bool?)null),
                                        LastExecute = job != null ? job.LastExecution : (DateTime?)null,
                                        AssemblyName = plugin.AssemblyName,
                                        TypeName = plugin.TypeName,
+                                       IsRunning = job != null && ScheduledJob.IsJobRunning(job.ID),
                                }).OrderBy(j => j.Name).ToList();
         }
     }
