@@ -63,7 +63,6 @@
     <Compile Include="PageExtensions.cs" />
     <Compile Include="ResourceProvider.cs" />
     <Compile Include="ResourceVirtualFile.cs" />
-    <Compile Include="ModuleRoute.cs" />
     <Compile Include="RuntimeInfo.cs" />
     <Compile Include="ToolsPluginRegistration.cs" />
     <Compile Include="Controllers\OverviewController.cs" />

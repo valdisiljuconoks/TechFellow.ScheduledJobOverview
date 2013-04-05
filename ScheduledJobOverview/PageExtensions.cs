@@ -8,7 +8,7 @@ namespace TechFellow.ScheduledJobOverview
         public static string GetResourceUrl(this Page page, string url)
         {
             return RuntimeInfo.IsModule()
-                           ? Paths.ToClientResource(typeof(ClientScriptManagerExtensions), url + "/")
+                           ? Paths.ToClientResource(Const.ModuleName, url + "/")
                            : string.Format("/modules/{0}/{1}/", Const.ModuleName, url);
         }
     }

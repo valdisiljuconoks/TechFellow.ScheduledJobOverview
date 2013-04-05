@@ -16,6 +16,7 @@ namespace TechFellow.ScheduledJobOverview
                 return isModule;
             }
 
+#if !CMS6
             if (ServiceLocator.Current == null)
             {
                 return isModule;
@@ -25,10 +26,12 @@ namespace TechFellow.ScheduledJobOverview
             {
                 ShellModule module;
                 isModule = ServiceLocator.Current.GetInstance<ModuleTable>().TryGetModule(typeof(RuntimeInfo).Assembly, out module);
-                isInitialized = true;
             }
-
+#endif
+            isInitialized = true;
             return isModule;
         }
     }
 }
+
+namespace EPiServer.ServiceLocation { }

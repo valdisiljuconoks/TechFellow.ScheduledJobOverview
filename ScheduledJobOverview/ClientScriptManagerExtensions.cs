@@ -8,16 +8,17 @@ namespace TechFellow.ScheduledJobOverview
         public static string GetImageIncludes(this ClientScriptManager clientScript, string file)
         {
             return RuntimeInfo.IsModule()
-                           ? Paths.ToClientResource(typeof(ClientScriptManagerExtensions), "Images/" + file)
-                           : clientScript.GetWebResourceUrl(typeof(InitializeModule), ResourceProvider.CreateResourceUrl("Images", file));
+                           ? Paths.ToClientResource(Const.ModuleName, "Images/" + file)
+                           : clientScript.GetWebResourceUrl(typeof(ClientScriptManagerExtensions), ResourceProvider.CreateResourceUrl("Images", file));
         }
 
         public static string GetJavascriptIncludes(this ClientScriptManager clientScript, string file)
         {
             return string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>",
                                  RuntimeInfo.IsModule()
-                                         ? Paths.ToClientResource(typeof(ClientScriptManagerExtensions), "Scripts/" + file)
-                                         : clientScript.GetWebResourceUrl(typeof(InitializeModule), ResourceProvider.CreateResourceUrl("Scripts", file)));
+                                         ? Paths.ToClientResource(Const.ModuleName, "Scripts/" + file)
+                                         : clientScript.GetWebResourceUrl(typeof(ClientScriptManagerExtensions),
+                                                                          ResourceProvider.CreateResourceUrl("Scripts", file)));
         }
     }
 }
