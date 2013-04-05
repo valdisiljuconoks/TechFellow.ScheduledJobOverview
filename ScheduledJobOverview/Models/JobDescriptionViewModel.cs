@@ -11,8 +11,16 @@ namespace TechFellow.ScheduledJobOverview.Models
         public string AssemblyName { get; set; }
         public string TypeName { get; set; }
         public DateTime? LastExecute { get; set; }
+        public string LastExecuteDisplay
+        {
+            get
+            {
+                return LastExecute.HasValue ? LastExecute.Value.ToString("yyyy-MM-dd HH:mm:ss") : string.Empty;
+            }
+        }
         public bool IsEnabled { get; set; }
         public bool? IsLastExecuteSuccessful { get; set; }
         public string Interval { get; set; }
+        public bool IsRunning { get; set; }
     }
 }

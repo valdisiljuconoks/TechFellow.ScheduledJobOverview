@@ -1,6 +1,6 @@
 ﻿namespace TechFellow.ScheduledJobOverview
 {
-    internal class Const
+    public class Const
     {
         public const string ModuleName = "TechFellow.ScheduledJobOverview";
     }

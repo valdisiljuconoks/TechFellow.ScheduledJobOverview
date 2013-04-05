@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>TechFellow.ScheduledJobOverview.AddOn</id>
+    <version>1.3.0</version>
+    <title>TechFellow.ScheduledJobOverview.AddOn</title>
+    <authors>Tech Fellow Consulting</authors>
+    <owners>Tech Fellow Consulting</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>EPiServer Scheduled job overview plugin. Gives you an easy way to overview all of your scheduled jobs.</description>
+    <copyright>Copyright 2013</copyright>
+    <tags>EPiServerModulePackage ScheduledJob ScheduledJobs CMS7</tags>
+    <dependencies>
+      <dependency id="EPiServer" version="[7.0, 8.0)" />
+      <dependency id="EPiServer.Shell" version="[7.0, 8.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Scripts\site.js" target="content\Scripts\site.js" />
+    <file src="Scripts\site.min.js" target="content\Scripts\site.min.js" />
+    <file src="Scripts\angular.min.js" target="content\Scripts\angular.min.js" />
+    <file src="Images\spinner.gif" target="content\Images\spinner.gif" />
+    <file src="Views\Overview\Index.aspx" target="content\Views\Overview\Index.aspx" />
+    <file src="Views\Shared\Site.Master" target="content\Views\Shared\Site.Master" />
+    <file src="module.config" target="content\module.config" />
+    <file src="bin\Release\AddOn\TechFellow.ScheduledJobOverview.dll" target="lib\net40\TechFellow.ScheduledJobOverview.dll" />
+  </files>
+</package>

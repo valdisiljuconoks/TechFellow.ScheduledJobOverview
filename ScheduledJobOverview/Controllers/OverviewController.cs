@@ -5,10 +5,17 @@ namespace TechFellow.ScheduledJobOverview.Controllers
     public class OverviewController : Controller
     {
         [Authorize]
-        public ActionResult Index()
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult GetList()
         {
             var repository = new JobRepository();
-            return View(repository.GetList());
+            return Json(repository.GetList(), JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public ActionResult Index()
+        {
+            return View();
         }
     }
 }

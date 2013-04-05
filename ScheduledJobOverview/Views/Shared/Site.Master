@@ -1,9 +1,13 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Assembly Name="TechFellow.ScheduledJobOverview" %>
 
+<%@ Import namespace="EPiServer.Shell.Web.Mvc.Html" %>
+<%@ Import namespace="TechFellow.ScheduledJobOverview" %>
+
 <!DOCTYPE html>
-<html>
+<html ng-app="schApp">
     <head runat="server">
+        <%= Page.ClientScript.GetJavascriptIncludes("angular.min.js") %>
         <title>
             <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
         </title>
@@ -21,5 +25,7 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
+
+        <%= Page.ClientScript.GetJavascriptIncludes("site.js") %>
     </body>
 </html>

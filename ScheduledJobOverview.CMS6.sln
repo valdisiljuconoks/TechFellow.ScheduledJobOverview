@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduledJobOverview", "ScheduledJobOverview\ScheduledJobOverview.CMS6.csproj", "{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduledJobOverview.UnitTests", "ScheduledJobOverview.UnitTests\ScheduledJobOverview.UnitTests.csproj", "{453D3629-F676-4FBE-B013-D001866EBA8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{453D3629-F676-4FBE-B013-D001866EBA8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{453D3629-F676-4FBE-B013-D001866EBA8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{453D3629-F676-4FBE-B013-D001866EBA8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{453D3629-F676-4FBE-B013-D001866EBA8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

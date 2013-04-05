@@ -1,1 +1,1 @@
-nuget pack TechFellow.ScheduledJobOverview.NuGet.nuspec
+nuget pack ScheduledJobOverview.csproj -Properties Configuration="Release"
