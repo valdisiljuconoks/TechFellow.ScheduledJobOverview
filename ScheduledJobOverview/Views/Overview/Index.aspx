@@ -26,7 +26,7 @@
                     <th class="epitableheading" scope="col">Interval</th>
                     <th class="epitableheading" scope="col">Successful last execute</th>
                     <th class="epitableheading" scope="col">Last execute date</th>
-                    <th class="epitableheading" scope="col">Details</th>
+                    <th class="epitableheading" scope="col">Actions</th>
                     <tr data-ng-repeat="job in jobs">
                         <td style="text-align: center"><img src="<%= Page.ClientScript.GetImageIncludes("spinner.gif") %>" alt="{{job.IsRunning}}" data-ng-show="job.IsRunning" /></td>
                         <td style="white-space: nowrap">{{job.Name}}</td>
@@ -35,8 +35,13 @@
                         <td style="white-space: nowrap">{{job.Interval}}</td>
                         <td class="red-bold-{{job.IsLastExecuteSuccessful}}"><toggle-bool target-prop="{{job.IsLastExecuteSuccessful}}" /></td>
                         <td style="white-space: nowrap">{{job.LastExecuteDisplay}}</td>
-                        <td style="text-align: center"><span class="epi-cmsButton">
-                            <input type="button" value="" data-ng-click="showDetails(job.Id)" class="epi-cmsButton-tools epi-cmsButton-ViewMode"></span>
+                        <td style="text-align: center; white-space: nowrap">
+                            <span class="epi-cmsButton">
+                                <input type="button" value="" alt="Details" title="Details" data-ng-click="showDetails(job.Id)" class="epi-cmsButton-tools epi-cmsButton-ViewMode">
+                            </span>
+                            <span class="epi-cmsButton">
+                                <input type="button" value="" alt="Execute manually" title="Execute manually" data-ng-click="executeJob(job.Id)" class="epi-cmsButton-tools epi-cmsButton-MySettings">
+                            </span>
                         </td>
                     </tr>
                 </tbody>

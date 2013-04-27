@@ -35,6 +35,10 @@
                 $window.location.href = detailsUrl + '?pluginId=' + id;
             };
 
+            $scope.executeJob = function (id) {
+                $window.location.href = serviceUrl + '/Execute/' + id;
+            };
+
             $scope.$watch('autoRefresh', function(newValue) {
                 if (newValue) {
                     $scope.fetch();
