@@ -36,7 +36,7 @@
             };
 
             $scope.executeJob = function (id) {
-                $window.location.href = serviceUrl + '/Execute/' + id;
+                $window.location.href = serviceUrl + '/Execute/?jobId=' + id;
             };
 
             $scope.$watch('autoRefresh', function(newValue) {

@@ -23,10 +23,15 @@ namespace TechFellow.ScheduledJobOverview.Controllers
         //}
 
         [Authorize]
-        public ActionResult Execute(int id)
+        public RedirectToRouteResult Execute(string jobId)
         {
+            if (string.IsNullOrEmpty(jobId))
+            {
+                throw new ArgumentNullException("jobId");
+            }
+
             var repository = new JobRepository();
-            var job = repository.GetList().FirstOrDefault(j => j.Id == id);
+            var job = repository.GetList().FirstOrDefault(j => j.Id == int.Parse(jobId));
 
             if (job != null)
             {
@@ -80,9 +85,10 @@ namespace TechFellow.ScheduledJobOverview.Controllers
         }
 
         [Authorize]
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            // we need to specify absolute path for the view - may return different view in larger scale applications
+            return RuntimeInfo.IsModule() ? View() : View("~/modules/" + Const.ModuleName + "/Views/Overview/Index.aspx");
         }
     }
 }

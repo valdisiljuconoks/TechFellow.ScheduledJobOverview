@@ -25,7 +25,9 @@ namespace TechFellow.ScheduledJobOverview
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
             RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin",
                                        "modules/" + Const.ModuleName + "/{controller}/{action}/{id}",
-                                       new { controller = "Overview", action = "Index", id = UrlParameter.Optional });
+                                       new { controller = "Overview", action = "Index", id = UrlParameter.Optional },
+                                       new[] { "TechFellow.ScheduledJobOverview.Controllers" })
+                      .DataTokens["UseNamespaceFallback"] = false;
 
             ViewEngines.Engines.Add(new CustomViewEngine());
         }
