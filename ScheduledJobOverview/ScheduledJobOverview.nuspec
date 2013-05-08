@@ -11,4 +11,7 @@
     <copyright>Copyright 2013</copyright>
     <tags>EPiServer ScheduledJob ScheduledJobs CMS7</tags>
   </metadata>
+  <files>
+    <file src="bin\Release\NuGet\Microsoft.Web.Infrastructure.dll" target="lib\net40\Microsoft.Web.Infrastructure.dll" />
+  </files>
 </package>

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
@@ -7,6 +8,37 @@ using InitializationModule = EPiServer.Web.InitializationModule;
 
 namespace TechFellow.ScheduledJobOverview
 {
+    /// <summary>
+    ///     This class is created just for workaround as EPiServer does not expose events around default route registration process.
+    /// </summary>
+    public class WorkaroundRouteRegistrationHttpModule : IHttpModule
+    {
+        private static bool isInitialized;
+
+        public void Init(HttpApplication context)
+        {
+            if (isInitialized)
+            {
+                return;
+            }
+
+            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin",
+                                       "modules/" + Const.ModuleName + "/{controller}/{action}/{id}",
+                                       new { controller = "Overview", action = "Index", id = UrlParameter.Optional },
+                                       new[] { "TechFellow.ScheduledJobOverview.Controllers" })
+                      .DataTokens["UseNamespaceFallback"] = false;
+
+            lock (context)
+            {
+                isInitialized = true;
+            }
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+
     [ModuleDependency(typeof(InitializationModule))]
     [InitializableModule]
     public class InitializeModule : IInitializableModule
@@ -22,13 +54,10 @@ namespace TechFellow.ScheduledJobOverview
                 return;
             }
 
+#if !ADDON && !CMS6
+            DynamicModuleUtility.RegisterModule(typeof(WorkaroundRouteRegistrationHttpModule));
+#endif
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
-            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin",
-                                       "modules/" + Const.ModuleName + "/{controller}/{action}/{id}",
-                                       new { controller = "Overview", action = "Index", id = UrlParameter.Optional },
-                                       new[] { "TechFellow.ScheduledJobOverview.Controllers" })
-                      .DataTokens["UseNamespaceFallback"] = false;
-
             ViewEngines.Engines.Add(new CustomViewEngine());
         }
 
@@ -36,4 +65,8 @@ namespace TechFellow.ScheduledJobOverview
         {
         }
     }
+}
+
+namespace Microsoft.Web.Infrastructure.DynamicModuleHelper
+{
 }

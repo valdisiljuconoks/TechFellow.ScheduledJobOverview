@@ -1,7 +1,4 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.Shell.Modules;
-
-namespace TechFellow.ScheduledJobOverview
+﻿namespace TechFellow.ScheduledJobOverview
 {
     public static class RuntimeInfo
     {
@@ -34,4 +31,6 @@ namespace TechFellow.ScheduledJobOverview
     }
 }
 
-namespace EPiServer.ServiceLocation { }
+namespace EPiServer.ServiceLocation
+{
+}

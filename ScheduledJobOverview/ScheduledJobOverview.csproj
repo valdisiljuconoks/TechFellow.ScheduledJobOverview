@@ -43,6 +43,11 @@
     <Reference Include="EPiServer.Framework, Version=7.0.859.1, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL" />
     <Reference Include="EPiServer.Shell, Version=7.0.859.1, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL" />
     <Reference Include="EPiServer.UI, Version=7.0.586.1, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
