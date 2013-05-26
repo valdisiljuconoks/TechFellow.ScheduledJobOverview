@@ -4,6 +4,7 @@ using System.Web.Routing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Web.Hosting;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using InitializationModule = EPiServer.Web.InitializationModule;
 
 namespace TechFellow.ScheduledJobOverview

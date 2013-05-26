@@ -5,6 +5,7 @@ using EPiServer.DataAbstraction;
 
 namespace TechFellow.ScheduledJobOverview.Controllers
 {
+    [Authorize]
     public class OverviewController : Controller
     {
         //public ActionResult ExportToCSV()
@@ -22,8 +23,7 @@ namespace TechFellow.ScheduledJobOverview.Controllers
         //    return null;
         //}
 
-        [Authorize]
-        public RedirectToRouteResult Execute(string jobId)
+        public RedirectResult Execute(string jobId)
         {
             if (string.IsNullOrEmpty(jobId))
             {
@@ -73,10 +73,9 @@ namespace TechFellow.ScheduledJobOverview.Controllers
                 }
             }
 
-            return RedirectToAction("Index");
+            return Redirect("~/modules/" + Const.ModuleName + "/Overview/Index");
         }
 
-        [Authorize]
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult GetList()
         {
@@ -84,7 +83,6 @@ namespace TechFellow.ScheduledJobOverview.Controllers
             return Json(repository.GetList(), JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
         public ViewResult Index()
         {
             // we need to specify absolute path for the view - may return different view in larger scale applications
