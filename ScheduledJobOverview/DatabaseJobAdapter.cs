@@ -24,12 +24,12 @@ namespace TechFellow.ScheduledJobOverview
 
             navigateButton.Click += NavigateButtonOnClick;
 
-            var htmlGenericControl3 = new HtmlGenericControl("span");
-            htmlGenericControl3.Attributes.Add("class", "epi-cmsButton");
-            htmlGenericControl3.Attributes.Add("style", "float: right;");
-            htmlGenericControl3.Controls.Add(navigateButton);
+            var span = new HtmlGenericControl("span");
+            span.Attributes.Add("class", "epi-cmsButton");
+            span.Attributes.Add("style", "float: right;");
+            span.Controls.Add(navigateButton);
 
-            Control.FindControlRecursively("GeneralSettings").Controls.Add(htmlGenericControl3);
+            Control.FindControlRecursively("GeneralSettings").Controls.Add(span);
         }
 
         private void NavigateButtonOnClick(object sender, EventArgs eventArgs)
