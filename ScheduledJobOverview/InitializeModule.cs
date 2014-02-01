@@ -10,7 +10,8 @@ using InitializationModule = EPiServer.Web.InitializationModule;
 namespace TechFellow.ScheduledJobOverview
 {
     /// <summary>
-    ///     This class is created just for workaround as EPiServer does not expose events around default route registration process.
+    ///     This class is created just for workaround as EPiServer does not expose events around default route registration
+    ///     process.
     /// </summary>
     public class WorkaroundRouteRegistrationHttpModule : IHttpModule
     {
@@ -23,11 +24,16 @@ namespace TechFellow.ScheduledJobOverview
                 return;
             }
 
-            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin",
-                                       "modules/" + Const.ModuleName + "/{controller}/{action}/{id}",
-                                       new { controller = "Overview", action = "Index", id = UrlParameter.Optional },
-                                       new[] { "TechFellow.ScheduledJobOverview.Controllers" })
-                      .DataTokens["UseNamespaceFallback"] = false;
+            var route = new Route("modules/" + Const.ModuleName + "/{controller}/{action}/{id}", new MvcRouteHandler())
+                        {
+                                Defaults = new RouteValueDictionary(new { controller = "Overview", action = "Index", id = UrlParameter.Optional }),
+                                DataTokens = new RouteValueDictionary()
+                        };
+
+            route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
+            route.DataTokens["UseNamespaceFallback"] = false;
+
+            RouteTable.Routes.Insert(0, route);
 
             lock (context)
             {
