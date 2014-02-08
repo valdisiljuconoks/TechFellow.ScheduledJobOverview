@@ -31,8 +31,6 @@ namespace TechFellow.ScheduledJobOverview
                         };
 
             route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
-            route.DataTokens["UseNamespaceFallback"] = false;
-
             RouteTable.Routes.Insert(0, route);
 
             lock (context)
