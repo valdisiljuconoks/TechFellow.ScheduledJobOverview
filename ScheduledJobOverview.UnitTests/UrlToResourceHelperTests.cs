@@ -9,7 +9,7 @@ namespace ScheduledJobOverview.UnitTests
         [TestMethod]
         public void Translation_WithFolders_Success()
         {
-            var resource = ResourceProvider.TranslateToResource("~/modules/" + Const.ModuleName + "/Views/Overview/Index.aspx");
+            var resource = ResourceProvider.TranslateToResource("~/" + Const.ModuleName + "/Views/Overview/Index.aspx");
             Assert.AreEqual("TechFellow.ScheduledJobOverview.Views.Overview.Index.aspx", resource);
         }
     }

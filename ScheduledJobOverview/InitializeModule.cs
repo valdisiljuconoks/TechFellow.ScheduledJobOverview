@@ -13,38 +13,38 @@ namespace TechFellow.ScheduledJobOverview
     ///     This class is created just for workaround as EPiServer does not expose events around default route registration
     ///     process.
     /// </summary>
-    public class WorkaroundRouteRegistrationHttpModule : IHttpModule
-    {
-        private static bool isInitialized;
+    //public class WorkaroundRouteRegistrationHttpModule : IHttpModule
+    //{
+    //    private static bool isInitialized;
 
-        public void Init(HttpApplication context)
-        {
-            if (isInitialized)
-            {
-                return;
-            }
+    //    public void Init(HttpApplication context)
+    //    {
+    //        if (isInitialized)
+    //        {
+    //            return;
+    //        }
 
-            var route = new Route("modules/" + Const.ModuleName + "/{controller}/{action}/{id}", new MvcRouteHandler())
-                        {
-                                Defaults = new RouteValueDictionary(new { controller = "Overview", action = "Index", id = UrlParameter.Optional }),
-                                DataTokens = new RouteValueDictionary()
-                        };
+    //        var route = new Route("modules/" + Const.ModuleName + "/{controller}/{action}/{id}", new MvcRouteHandler())
+    //                    {
+    //                            Defaults = new RouteValueDictionary(new { controller = "Overview", action = "Index", id = UrlParameter.Optional }),
+    //                            DataTokens = new RouteValueDictionary()
+    //                    };
 
-            route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
-            RouteTable.Routes.Insert(0, route);
+    //        route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
+    //        RouteTable.Routes.Insert(0, route);
 
-            lock (context)
-            {
-                isInitialized = true;
-            }
-        }
+    //        lock (context)
+    //        {
+    //            isInitialized = true;
+    //        }
+    //    }
 
-        public void Dispose()
-        {
-        }
-    }
+    //    public void Dispose()
+    //    {
+    //    }
+    //}
 
-    [ModuleDependency(typeof(InitializationModule))]
+    //[ModuleDependency(typeof(InitializationModule))]
     [InitializableModule]
     public class InitializeModule : IInitializableModule
     {
@@ -60,8 +60,18 @@ namespace TechFellow.ScheduledJobOverview
             }
 
 #if !ADDON && !CMS6
-            DynamicModuleUtility.RegisterModule(typeof(WorkaroundRouteRegistrationHttpModule));
+            //DynamicModuleUtility.RegisterModule(typeof(WorkaroundRouteRegistrationHttpModule));
 #endif
+
+            var route = new Route(Const.ModuleName + "/{controller}/{action}/{id}", new MvcRouteHandler())
+            {
+                Defaults = new RouteValueDictionary(new { controller = "Overview", action = "Index", id = UrlParameter.Optional }),
+                DataTokens = new RouteValueDictionary()
+            };
+
+            route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
+            RouteTable.Routes.Insert(0, route);
+
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
             ViewEngines.Engines.Add(new CustomViewEngine());
         }

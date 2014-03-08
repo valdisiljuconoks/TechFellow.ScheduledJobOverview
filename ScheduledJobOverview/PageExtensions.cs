@@ -9,7 +9,7 @@ namespace TechFellow.ScheduledJobOverview
         {
             return RuntimeInfo.IsModule()
                            ? Paths.ToClientResource(Const.ModuleName + ".AddOn", url + "/")
-                           : string.Format("/modules/{0}/{1}/", Const.ModuleName, url);
+                           : string.Format("/{0}/{1}/", Const.ModuleName, url);
         }
     }
 }

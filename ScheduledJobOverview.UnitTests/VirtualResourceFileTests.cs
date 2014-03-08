@@ -9,7 +9,7 @@ namespace ScheduledJobOverview.UnitTests
         [TestMethod]
         public void GetVirtualFile_Subdirecotry_Success()
         {
-            var file = new ResourceVirtualFile("~/modules/" + Const.ModuleName + "/Views/Overview/Index.aspx");
+            var file = new ResourceVirtualFile("~/" + Const.ModuleName + "/Views/Overview/Index.aspx");
             Assert.IsNotNull(file.Open());
         }
     }

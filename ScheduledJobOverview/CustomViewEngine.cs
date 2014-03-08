@@ -6,7 +6,7 @@ namespace TechFellow.ScheduledJobOverview
     {
         public CustomViewEngine()
         {
-            ViewLocationFormats = new[] { "~/modules/" + Const.ModuleName + "/Views/{1}/{0}.aspx" };
+            ViewLocationFormats = new[] { "~/" + Const.ModuleName + "/Views/{1}/{0}.aspx" };
         }
     }
 }

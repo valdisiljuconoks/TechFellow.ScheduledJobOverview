@@ -73,7 +73,7 @@ namespace TechFellow.ScheduledJobOverview.Controllers
                 }
             }
 
-            return Redirect("~/modules/" + Const.ModuleName + "/Overview/Index");
+            return Redirect("~/" + Const.ModuleName + "/Overview/Index");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -86,7 +86,7 @@ namespace TechFellow.ScheduledJobOverview.Controllers
         public ViewResult Index()
         {
             // we need to specify absolute path for the view - may return different view in larger scale applications
-            return RuntimeInfo.IsModule() ? View() : View("~/modules/" + Const.ModuleName + "/Views/Overview/Index.aspx");
+            return RuntimeInfo.IsModule() ? View() : View("~/" + Const.ModuleName + "/Views/Overview/Index.aspx");
         }
     }
 }
