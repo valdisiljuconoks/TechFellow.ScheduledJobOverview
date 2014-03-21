@@ -59,19 +59,11 @@ namespace TechFellow.ScheduledJobOverview
                 return;
             }
 
+            // TODO: sort out this dynamic module stuff
 #if !ADDON && !CMS6
             //DynamicModuleUtility.RegisterModule(typeof(WorkaroundRouteRegistrationHttpModule));
 #endif
-
-            var route = new Route(Const.ModuleName + "/{controller}/{action}/{id}", new MvcRouteHandler())
-            {
-                Defaults = new RouteValueDictionary(new { controller = "Overview", action = "Index", id = UrlParameter.Optional }),
-                DataTokens = new RouteValueDictionary()
-            };
-
-            route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
-            RouteTable.Routes.Insert(0, route);
-
+            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin", "TechFellow.ScheduledJobOverview/Overview/{action}", new { action = "Index", controller = "Overview" });
             GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
             ViewEngines.Engines.Add(new CustomViewEngine());
         }
