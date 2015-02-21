@@ -1,28 +1,19 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
-using EPiServer.DataAbstraction;
 
 namespace TechFellow.ScheduledJobOverview.Controllers
 {
     [Authorize]
     public class OverviewController : Controller
     {
-        //public ActionResult ExportToCSV()
-        //{
-        //    Response.Clear();
-        //    Response.AddHeader("content-disposition", "attachment;filename=prenumeranter.xls");
-        //    Response.Charset = "UTF8";
-        //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        //    Response.ContentType = "application/vnd.xls";
-        //    StringWriter stringWrite = new StringWriter();
-        //    HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
-        //    //grdSubscribers.RenderControl(htmlWrite);
-        //    Response.Write(stringWrite.ToString());
-        //    Response.End();
-        //    return null;
-        //}
+        private readonly JobRepository _repository;
 
+        public OverviewController()
+        {
+            _repository = new JobRepository();
+        }
+
+        [HandleError]
         public RedirectResult Execute(string jobId)
         {
             if (string.IsNullOrEmpty(jobId))
@@ -30,47 +21,33 @@ namespace TechFellow.ScheduledJobOverview.Controllers
                 throw new ArgumentNullException("jobId");
             }
 
-            var repository = new JobRepository();
-            var job = repository.GetList().FirstOrDefault(j => j.Id == int.Parse(jobId));
+            var job = _repository.GetById(int.Parse(jobId));
 
             if (job != null)
             {
-                try
+                var jobInstance = job.InstanceId != Guid.Empty ? _repository.Get(job.InstanceId) : _repository.Create(job);
+
+                if (jobInstance != null)
                 {
-                    ScheduledJob jobInstance;
-                    if (job.InstanceId != Guid.Empty)
-                    {
-                        jobInstance = ScheduledJob.Load(job.InstanceId);
-                    }
-                    else
-                    {
-                        jobInstance = new ScheduledJob
-                                          {
-                                                  IntervalType = ScheduledIntervalType.Days,
-                                                  IsEnabled = false,
-                                                  Name = job.Name,
-                                                  MethodName = "Execute",
-                                                  TypeName = job.TypeName,
-                                                  AssemblyName = job.AssemblyName,
-                                                  IsStaticMethod = true
-                                          };
-
-                        if (jobInstance.NextExecution == DateTime.MinValue)
-                        {
-                            jobInstance.NextExecution = DateTime.Today;
-                        }
-
-                        jobInstance.Save();
-                    }
-
-                    if (jobInstance != null)
-                    {
-                        jobInstance.ExecuteManually();
-                    }
+                    jobInstance.ExecuteManually();
                 }
-                catch
-                {
-                }
+            }
+
+            return Redirect("~/" + Const.ModuleName + "/Overview/Index");
+        }
+
+        [HandleError]
+        public RedirectResult Stop(string jobId)
+        {
+            if (string.IsNullOrEmpty(jobId))
+            {
+                throw new ArgumentNullException("jobId");
+            }
+
+            var instance = _repository.GetById(int.Parse(jobId));
+            if (instance != null)
+            {
+                _repository.Get(instance.InstanceId).Stop();
             }
 
             return Redirect("~/" + Const.ModuleName + "/Overview/Index");

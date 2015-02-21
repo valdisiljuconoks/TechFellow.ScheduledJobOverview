@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+
 <package>
   <metadata>
     <id>TechFellow.ScheduledJobOverview.Cms75</id>
@@ -9,10 +10,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2014</copyright>
-    <tags>EPiServer ScheduledJob ScheduledJobs CMS7.5</tags>
+    <tags>EPiServer ScheduledJob ScheduledJobs CMS 7.5 TechFellow Overview CMS7.5</tags>
     <dependencies>
       <dependency id="EPiServer.CMS.Core" version="7.5.394.2" />
       <dependency id="EPiServer.Framework" version="7.5.394.2" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
     </dependencies>
   </metadata>
 </package>
