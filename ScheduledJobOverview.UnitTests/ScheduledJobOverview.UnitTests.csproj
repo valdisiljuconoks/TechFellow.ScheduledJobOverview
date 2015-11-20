@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="UrlToResourceHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VirtualResourceFileTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ScheduledJobOverview\ScheduledJobOverview.csproj">
