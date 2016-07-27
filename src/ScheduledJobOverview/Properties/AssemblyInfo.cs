@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tech Fellow Consulting, http://blog.tech-fellow.net")]
 [assembly: AssemblyProduct("EPiServer Scheduled Job Overview")]
-[assembly: AssemblyCopyright("Copyright © 2015, Tech Fellow")]
+[assembly: AssemblyCopyright("Copyright 2016 (c) Valdis Iljuconoks, Tech Fellow")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

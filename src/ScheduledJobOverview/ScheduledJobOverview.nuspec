@@ -7,9 +7,11 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <projectUrl>https://github.com/valdisiljuconoks/TechFellow.ScheduledJobOverview</projectUrl>
+    <licenseUrl>https://github.com/valdisiljuconoks/TechFellow.ScheduledJobOverview/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright 2015, Valdis Iljuconoks (Tech Fellow)</copyright>
-    <tags>EPiServer ScheduledJob ScheduledJobs Jobs Scheduled Batch</tags>
+    <releaseNotes>EPiServer ScheduledJobs overview plugin. Added job execution time statistics collector.</releaseNotes>
+    <copyright>Copyright 2016 (c) Valdis Iljuconoks, Tech Fellow</copyright>
+    <tags>EPiServer ScheduledJob ScheduledJobs Jobs Scheduled Batch BackgroundJobs Background</tags>
   </metadata>
 </package>

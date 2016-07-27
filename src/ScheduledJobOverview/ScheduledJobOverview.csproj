@@ -193,6 +193,7 @@
     <Content Include="modules\_protected\TechFellow.ScheduledJobOverview\web.config" />
     <None Include="packages.config" />
     <None Include="ScheduledJobOverview.nuspec" />
+    <Content Include="web.config.transform" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Browsers\ScheduledJobOverviewAdapterMappings.browser.transform">

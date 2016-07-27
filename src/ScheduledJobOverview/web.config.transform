@@ -1,0 +1,7 @@
+<configuration>
+    <episerver.shell>
+        <protectedModules>
+            <add name="TechFellow.ScheduledJobOverview" />
+        </protectedModules>
+    </episerver.shell>
+</configuration>
