@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/5ej3pwpl9b7j1obx?svg=true)](https://ci.appveyor.com/project/ValdisIljuconoks/techfellow-scheduledjoboverview)
+
 ScheduledJobOverview
 ===============================
 
