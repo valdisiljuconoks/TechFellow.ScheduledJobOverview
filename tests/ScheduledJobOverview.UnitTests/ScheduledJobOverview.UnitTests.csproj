@@ -58,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScheduledJobOverview\ScheduledJobOverview.csproj">
+    <ProjectReference Include="..\..\src\ScheduledJobOverview\ScheduledJobOverview.csproj">
       <Project>{ce78f8fe-d1bf-4e8f-a13c-a3a717b40a88}</Project>
       <Name>ScheduledJobOverview</Name>
     </ProjectReference>
