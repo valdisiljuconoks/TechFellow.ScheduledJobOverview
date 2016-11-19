@@ -49,6 +49,14 @@
       <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EPiServer, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.CMS.Core.9.0.0\lib\net45\EPiServer.dll</HintPath>
       <Private>True</Private>
@@ -138,6 +146,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -169,6 +178,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201607272127111_InitialCreate.cs" />
+    <Compile Include="Migrations\201607272127111_InitialCreate.Designer.cs">
+      <DependentUpon>201607272127111_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ScheduledJobsStatisticsContext.cs" />
     <Compile Include="Controllers\JobOverviewRestStore.cs" />
     <Compile Include="JobRepository.cs" />
     <Compile Include="Const.cs" />
@@ -188,6 +203,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="modules\_protected\TechFellow.ScheduledJobOverview\module.config" />
     <Content Include="modules\_protected\TechFellow.ScheduledJobOverview\TechFellow.ScheduledJobOverview.zip" />
     <Content Include="modules\_protected\TechFellow.ScheduledJobOverview\web.config" />
@@ -200,6 +218,9 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="modules\_protected\TechFellow.ScheduledJobOverview\spinner.gif" />
+    <EmbeddedResource Include="Migrations\201607272127111_InitialCreate.resx">
+      <DependentUpon>201607272127111_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="modules\_protected\TechFellow.ScheduledJobOverview\site.min.js">
       <DependentUpon>site.js</DependentUpon>
     </EmbeddedResource>

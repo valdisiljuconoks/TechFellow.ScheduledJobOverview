@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduledJobOverview.UnitTests", "tests\ScheduledJobOverview.UnitTests\ScheduledJobOverview.UnitTests.csproj", "{453D3629-F676-4FBE-B013-D001866EBA8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApp", "tests\SampleWebApp\SampleWebApp.csproj", "{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F5A26048-3FE4-467F-BA71-8CCCAD726A39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +34,18 @@ Global
 		{453D3629-F676-4FBE-B013-D001866EBA8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{453D3629-F676-4FBE-B013-D001866EBA8A}.Verify|Any CPU.ActiveCfg = Release|Any CPU
 		{453D3629-F676-4FBE-B013-D001866EBA8A}.Verify|Any CPU.Build.0 = Release|Any CPU
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}.Verify|Any CPU.ActiveCfg = Release|Any CPU
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3}.Verify|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{453D3629-F676-4FBE-B013-D001866EBA8A} = {F5A26048-3FE4-467F-BA71-8CCCAD726A39}
+		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3} = {F5A26048-3FE4-467F-BA71-8CCCAD726A39}
 	EndGlobalSection
 EndGlobal

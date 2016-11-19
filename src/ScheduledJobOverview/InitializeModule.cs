@@ -1,79 +1,94 @@
-﻿//using System.Web;
-//using System.Web.Mvc;
-//using System.Web.Routing;
+﻿//using System;
+//using System.Diagnostics;
+//using Castle.DynamicProxy;
+//using EPiServer.Data;
+//using EPiServer.DataAbstraction;
+//using EPiServer.DataAccess;
 //using EPiServer.Framework;
 //using EPiServer.Framework.Initialization;
-//using EPiServer.Web.Hosting;
-//using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+//using EPiServer.Scheduler;
+//using EPiServer.ServiceLocation;
+//using StructureMap.Pipeline;
 //using InitializationModule = EPiServer.Web.InitializationModule;
 
 //namespace TechFellow.ScheduledJobOverview
 //{
-//    /// <summary>
-//    ///     This class is created just for workaround as EPiServer does not expose events around default route registration
-//    ///     process.
-//    /// </summary>
-//    //public class WorkaroundRouteRegistrationHttpModule : IHttpModule
-//    //{
-//    //    private static bool isInitialized;
+//    [ModuleDependency(typeof(InitializationModule))]
+//    [InitializableModule]
+//    public class InitializeModule : IConfigurableModule
+//    {
+//        public void Initialize(InitializationEngine context) { }
 
-//    //    public void Init(HttpApplication context)
+//        public void Uninitialize(InitializationEngine context) { }
+
+//        public void ConfigureContainer(ServiceConfigurationContext context)
+//        {
+//            try
+//            {
+//                var dp = new ProxyGenerator();
+//                var target = context.Container.GetInstance<ScheduledJobRepository>();
+//                var interceptor = new StatisticsInterceptor();
+
+//                var newInstance = dp.CreateClassProxyWithTarget(target, interceptor);
+
+//                context.Container.Inject(newInstance);
+
+//                context.Container.Configure(config =>
+//                                            {
+//                                                //config.For<ScheduledJobRepository>().Use(newInstance);
+//                                                //config.For<ISchedulerService>(Lifecycles.Singleton).Use<CustomerSchedulerService>();
+//                                                //config.For<SchedulerDB>().Use<CustomerSchedulerDB>();
+//                                            });
+//            }
+//            catch (Exception e)
+//            {
+                
+//            }
+//        }
+//    }
+
+//    public class StatisticsInterceptor : IInterceptor {
+//        public void Intercept(IInvocation invocation)
+//        {
+//            invocation.Proceed();
+//        }
+//    }
+
+//    //public class CustomerSchedulerDB : SchedulerDB {
+//    //    public CustomerSchedulerDB(IDatabaseHandler databaseHandler) : base(databaseHandler) { }
+
+//    //    public new void ReportExecuteItem(Guid id, int status, string text)
 //    //    {
-//    //        if (isInitialized)
-//    //        {
-//    //            return;
-//    //        }
-
-//    //        var route = new Route("modules/" + Const.ModuleName + "/{controller}/{action}/{id}", new MvcRouteHandler())
-//    //                    {
-//    //                            Defaults = new RouteValueDictionary(new { controller = "Overview", action = "Index", id = UrlParameter.Optional }),
-//    //                            DataTokens = new RouteValueDictionary()
-//    //                    };
-
-//    //        route.DataTokens["Namespaces"] = new[] { "TechFellow.ScheduledJobOverview.Controllers" };
-//    //        RouteTable.Routes.Insert(0, route);
-
-//    //        lock (context)
-//    //        {
-//    //            isInitialized = true;
-//    //        }
-//    //    }
-
-//    //    public void Dispose()
-//    //    {
+//    //        base.ReportExecuteItem(id, status, text);
 //    //    }
 //    //}
 
-//    //[ModuleDependency(typeof(InitializationModule))]
-//    [InitializableModule]
-//    public class InitializeModule : IInitializableModule
-//    {
-//        public void Preload(string[] parameters)
-//        {
-//        }
+//    //public class CustomerSchedulerService : SchedulerService
+//    //{
+//    //    internal static Injected<ServiceAccessor<ScheduledJobRepository>> Repository { get; set; }
 
-//        public void Initialize(InitializationEngine context)
-//        {
-//            if (RuntimeInfo.IsModule())
-//            {
-//                return;
-//            }
+//    //    protected override void ExecuteJob()
+//    //    {
+//    //        var sw = new Stopwatch();
 
-//            // TODO: sort out this dynamic module stuff
-//#if !ADDON && !CMS6
-//            //DynamicModuleUtility.RegisterModule(typeof(WorkaroundRouteRegistrationHttpModule));
-//#endif
-//            RouteTable.Routes.MapRoute("ScheduledJobOverviewPlugin", "TechFellow.ScheduledJobOverview/Overview/{action}", new { action = "Index", controller = "Overview" });
-//            GenericHostingEnvironment.Instance.RegisterVirtualPathProvider(new ResourceProvider());
-//            ViewEngines.Engines.Add(new CustomViewEngine());
-//        }
+//    //        sw.Start();
+//    //        base.ExecuteJob();
+//    //        sw.Stop();
 
-//        public void Uninitialize(InitializationEngine context)
-//        {
-//        }
-//    }
-//}
+//    //        var duration = sw.ElapsedMilliseconds;
 
-//namespace Microsoft.Web.Infrastructure.DynamicModuleHelper
-//{
+//    //        using (var ctx = new ScheduledJobsStatisticsContext())
+//    //        {
+//    //            ctx.ScheduledJobsStatistics.Add(new ScheduledJobsStatisticsEntry
+//    //                                            {
+//    //                                                JobId = CurrentScheduledItem.ID,
+//    //                                                Name = "Unknown",
+//    //                                                DurationInMilliseconds = duration,
+//    //                                                ExecutedAt = DateTime.UtcNow
+//    //                                            });
+
+//    //            ctx.SaveChanges();
+//    //        }
+//    //    }
+//    //}
 //}
