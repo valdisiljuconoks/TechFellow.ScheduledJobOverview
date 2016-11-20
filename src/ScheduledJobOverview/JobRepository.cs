@@ -16,11 +16,25 @@ namespace TechFellow.ScheduledJobOverview
             _actualRepository = new ScheduledJobRepository();
         }
 
-        public List<JobDescriptionViewModel> GetList()
+        public IEnumerable<JobDescriptionViewModel> GetList()
         {
             var plugIns = PlugInLocator.Search(new ScheduledPlugInAttribute()).ToList();
 
-            return (from plugin in plugIns
+            // get actual activated jobs (ran at least once)
+            var actual = from job in _actualRepository.List()
+                          let type = Type.GetType($"{job.TypeName}, {job.AssemblyName}")
+                          select new JobDescriptionViewModel
+                                 {
+                                     Id = -1,
+                                     InstanceId = job.ID,
+                                     Name = job.Name,
+                                     Exists = type != null,
+                                     TypeName = job.TypeName,
+                                     AssemblyName = job.AssemblyName
+                          };
+
+            // get all scheduled jobs (even inactive)
+            var plugins = (from plugin in plugIns
                     let job = _actualRepository.List().FirstOrDefault(j => j.TypeName == plugin.TypeName && j.AssemblyName == plugin.AssemblyName)
                     let attr = plugin.GetAttribute<ScheduledPlugInAttribute>()
                     select new JobDescriptionViewModel
@@ -29,14 +43,20 @@ namespace TechFellow.ScheduledJobOverview
                         InstanceId = job != null ? job.ID : Guid.Empty,
                         Name = attr.DisplayName,
                         Description = attr.Description,
-                        IsEnabled = (job != null && job.IsEnabled),
-                        Interval = job != null ? string.Format("{0} ({1})", job.IntervalLength, job.IntervalType) : "",
+                        IsEnabled = job != null && job.IsEnabled,
+                        Interval = job != null ? $"{job.IntervalLength} ({job.IntervalType})" : "",
                         IsLastExecuteSuccessful = (job != null && !job.HasLastExecutionFailed ? true : (bool?)null),
                         LastExecute = job != null ? job.LastExecution : (DateTime?)null,
                         AssemblyName = plugin.AssemblyName,
                         TypeName = plugin.TypeName,
                         IsRunning = job != null && ScheduledJob.IsJobRunning(job.ID),
                     }).OrderBy(j => j.Name).ToList();
+
+            // return distinct list
+            return plugins.Concat(actual)
+                .GroupBy(j => j.TypeName)
+                .Select(g => g.First())
+                .ToList();
         }
 
         public ScheduledJob Get(Guid instanceId)
@@ -70,6 +90,16 @@ namespace TechFellow.ScheduledJobOverview
         public JobDescriptionViewModel GetById(int id)
         {
             return GetList().FirstOrDefault(j => j.Id == id);
+        }
+
+        public void Delete(Guid id)
+        {
+            _actualRepository.Delete(id);
+        }
+
+        public JobDescriptionViewModel GetByInstanceId(Guid id)
+        {
+            return GetList().FirstOrDefault(j => j.InstanceId == id);
         }
     }
 }

@@ -30,6 +30,7 @@
             vm.showDetails = showDetails;
             vm.executeJob = executeJob;
             vm.stopJob = stopJob;
+            vm.deleteJob = deleteJob;
 
             $http.defaults.headers.common['X-EpiRestAntiForgeryToken'] = antiForgeryToken;
 
@@ -62,6 +63,11 @@
 
             function stopJob(id) {
                 $http.put(serviceUrl + '/' + id);
+                vm.fetch();
+            };
+
+            function deleteJob(id) {
+                $http.delete(serviceUrl + '/' + id);
                 vm.fetch();
             };
 
