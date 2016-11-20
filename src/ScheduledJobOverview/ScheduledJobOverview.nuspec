@@ -15,7 +15,7 @@
     <tags>EPiServer ScheduledJob ScheduledJobs Jobs Scheduled Batch BackgroundJobs Background Overview</tags>
     <dependencies>
       <dependency id="EntityFramework" version="6.1.2" />
-      <dependency id="EPiServer.CMS.UI.Core" version="[9.0.0, 10.0.0)" />
+      <dependency id="EPiServer.CMS.UI.Core" version="10.0.0" />
     </dependencies>
   </metadata>
 </package>

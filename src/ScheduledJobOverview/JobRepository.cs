@@ -9,11 +9,11 @@ namespace TechFellow.ScheduledJobOverview
 {
     public class JobRepository
     {
-        private readonly ScheduledJobRepository _actualRepository;
+        private readonly IScheduledJobRepository _actualRepository;
 
-        public JobRepository()
+        public JobRepository(IScheduledJobRepository actualRepository)
         {
-            _actualRepository = new ScheduledJobRepository();
+            _actualRepository = actualRepository;
         }
 
         public IEnumerable<JobDescriptionViewModel> GetList()
@@ -45,11 +45,11 @@ namespace TechFellow.ScheduledJobOverview
                         Description = attr.Description,
                         IsEnabled = job != null && job.IsEnabled,
                         Interval = job != null ? $"{job.IntervalLength} ({job.IntervalType})" : "",
-                        IsLastExecuteSuccessful = (job != null && !job.HasLastExecutionFailed ? true : (bool?)null),
+                        IsLastExecuteSuccessful = job != null && !job.HasLastExecutionFailed ? true : (bool?)null,
                         LastExecute = job != null ? job.LastExecution : (DateTime?)null,
                         AssemblyName = plugin.AssemblyName,
                         TypeName = plugin.TypeName,
-                        IsRunning = job != null && ScheduledJob.IsJobRunning(job.ID),
+                        IsRunning = job != null && job.IsRunning
                     }).OrderBy(j => j.Name).ToList();
 
             // return distinct list

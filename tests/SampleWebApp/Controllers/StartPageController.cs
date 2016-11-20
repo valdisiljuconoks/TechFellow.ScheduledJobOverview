@@ -11,7 +11,7 @@ namespace SampleWebApp.Controllers
     public class StartPageController : PageControllerBase<StartPage>
     {
 
-        internal static Injected<ServiceAccessor<ScheduledJobRepository>> Repository { get; set; }
+        internal static Injected<ServiceAccessor<IScheduledJobRepository>> Repository { get; set; }
 
         public ActionResult Index(StartPage currentPage)
         {

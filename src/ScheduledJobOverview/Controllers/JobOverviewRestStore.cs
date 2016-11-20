@@ -9,9 +9,9 @@ namespace TechFellow.ScheduledJobOverview.Controllers
     {
         private readonly JobRepository _repository;
 
-        public JobOverviewRestStore()
+        public JobOverviewRestStore(JobRepository repository)
         {
-            _repository = new JobRepository();
+            _repository = repository;
         }
 
         [HttpGet]
