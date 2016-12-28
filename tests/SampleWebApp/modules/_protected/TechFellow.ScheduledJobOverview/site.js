@@ -31,6 +31,7 @@
             vm.executeJob = executeJob;
             vm.stopJob = stopJob;
             vm.deleteJob = deleteJob;
+            vm.showStats = showStats;
 
             $http.defaults.headers.common['X-EpiRestAntiForgeryToken'] = antiForgeryToken;
 
@@ -70,6 +71,10 @@
                 $http.delete(serviceUrl + '/' + id);
                 vm.fetch();
             };
+
+            function showStats(id) {
+                $window.location.href = 'charts.aspx?pluginId=' + id;
+            }
 
             $scope.$watch('vm.autoRefresh', function(newValue) {
                 if (newValue) {

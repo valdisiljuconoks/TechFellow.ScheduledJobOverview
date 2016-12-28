@@ -17,5 +17,7 @@ namespace TechFellow.ScheduledJobOverview.Models
         public string Interval { get; set; }
         public bool IsRunning { get; set; }
         public bool Exists { get; set; } = true;
+        public string LastMessage { get; set; }
+        public string LastDuration { get; set; }
     }
 }

@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using EPiServer.DataAbstraction;
 using EPiServer.PlugIn;
+using EPiServer.Scheduler;
 using TechFellow.ScheduledJobOverview.Models;
 
 namespace TechFellow.ScheduledJobOverview
 {
     public class JobRepository
     {
-        private readonly IScheduledJobRepository _actualRepository;
+        private readonly IScheduledJobRepository _repo;
+        private readonly IScheduledJobLogRepository _logRepo;
 
-        public JobRepository(IScheduledJobRepository actualRepository)
+        public JobRepository(IScheduledJobRepository repo, IScheduledJobLogRepository logRepo)
         {
-            _actualRepository = actualRepository;
+            _repo = repo;
+            _logRepo = logRepo;
         }
 
         public IEnumerable<JobDescriptionViewModel> GetList()
@@ -21,7 +24,7 @@ namespace TechFellow.ScheduledJobOverview
             var plugIns = PlugInLocator.Search(new ScheduledPlugInAttribute()).ToList();
 
             // get actual activated jobs (ran at least once)
-            var actual = from job in _actualRepository.List()
+            var actual = from job in _repo.List()
                           let type = Type.GetType($"{job.TypeName}, {job.AssemblyName}")
                           select new JobDescriptionViewModel
                                  {
@@ -35,8 +38,9 @@ namespace TechFellow.ScheduledJobOverview
 
             // get all scheduled jobs (even inactive)
             var plugins = (from plugin in plugIns
-                    let job = _actualRepository.List().FirstOrDefault(j => j.TypeName == plugin.TypeName && j.AssemblyName == plugin.AssemblyName)
-                    let attr = plugin.GetAttribute<ScheduledPlugInAttribute>()
+                           let job = _repo.List().FirstOrDefault(j => j.TypeName == plugin.TypeName && j.AssemblyName == plugin.AssemblyName)
+                           let attr = plugin.GetAttribute<ScheduledPlugInAttribute>()
+                           let lastLog = _logRepo.GetAsync(job.ID, 0, 1).GetAwaiter().GetResult().PagedResult.FirstOrDefault()
                     select new JobDescriptionViewModel
                     {
                         Id = plugin.ID,
@@ -46,7 +50,9 @@ namespace TechFellow.ScheduledJobOverview
                         IsEnabled = job != null && job.IsEnabled,
                         Interval = job != null ? $"{job.IntervalLength} ({job.IntervalType})" : "",
                         IsLastExecuteSuccessful = job != null && !job.HasLastExecutionFailed ? true : (bool?)null,
-                        LastExecute = job != null ? job.LastExecution : (DateTime?)null,
+                        LastExecute = job != null ? (job.LastExecution != DateTime.MinValue ? job.LastExecution : (DateTime?)null) : null,
+                        LastMessage = job.LastExecutionMessage,
+                        LastDuration = lastLog!= null ? (lastLog.Duration.HasValue ? $"{lastLog.Duration.Value.Milliseconds}ms" : string.Empty) : string.Empty,
                         AssemblyName = plugin.AssemblyName,
                         TypeName = plugin.TypeName,
                         IsRunning = job != null && job.IsRunning
@@ -61,7 +67,7 @@ namespace TechFellow.ScheduledJobOverview
 
         public ScheduledJob Get(Guid instanceId)
         {
-            return _actualRepository.Get(instanceId);
+            return _repo.Get(instanceId);
         }
 
         public ScheduledJob Create(JobDescriptionViewModel job)
@@ -78,11 +84,9 @@ namespace TechFellow.ScheduledJobOverview
             };
 
             if (result.NextExecution == DateTime.MinValue)
-            {
                 result.NextExecution = DateTime.Today;
-            }
 
-            _actualRepository.Save(result);
+            _repo.Save(result);
 
             return result;
         }
@@ -94,7 +98,7 @@ namespace TechFellow.ScheduledJobOverview
 
         public void Delete(Guid id)
         {
-            _actualRepository.Delete(id);
+            _repo.Delete(id);
         }
 
         public JobDescriptionViewModel GetByInstanceId(Guid id)
