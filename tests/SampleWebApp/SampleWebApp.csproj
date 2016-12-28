@@ -232,8 +232,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TechFellow.ScheduledJobOverview, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TechFellow.ScheduledJobOverview.3.0.0\lib\net452\TechFellow.ScheduledJobOverview.dll</HintPath>
+    <Reference Include="TechFellow.ScheduledJobOverview, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TechFellow.ScheduledJobOverview.3.1.0\lib\net452\TechFellow.ScheduledJobOverview.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
