@@ -31,7 +31,7 @@ namespace TechFellow.ScheduledJobOverview
                                      Id = -1,
                                      InstanceId = job.ID,
                                      Name = job.Name,
-                                     Exists = type != null,
+                                     Exists = false,
                                      TypeName = job.TypeName,
                                      AssemblyName = job.AssemblyName
                           };
