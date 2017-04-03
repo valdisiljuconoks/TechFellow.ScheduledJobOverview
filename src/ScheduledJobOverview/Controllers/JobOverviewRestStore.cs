@@ -1,5 +1,7 @@
 using System;
+using System.Threading;
 using System.Web.Mvc;
+using EPiServer.Scheduler;
 using EPiServer.Shell.Services.Rest;
 
 namespace TechFellow.ScheduledJobOverview.Controllers
@@ -8,10 +10,12 @@ namespace TechFellow.ScheduledJobOverview.Controllers
     public class JobOverviewRestStore : RestControllerBase
     {
         private readonly JobRepository _repository;
+        private readonly IScheduledJobExecutor _executor;
 
-        public JobOverviewRestStore()
+        public JobOverviewRestStore(JobRepository repository, IScheduledJobExecutor executor)
         {
-            _repository = new JobRepository();
+            _repository = repository;
+            _executor = executor;
         }
 
         [HttpGet]
@@ -31,7 +35,7 @@ namespace TechFellow.ScheduledJobOverview.Controllers
                 return Rest(null);
 
             var jobInstance = job.InstanceId != Guid.Empty ? _repository.Get(job.InstanceId) : _repository.Create(job);
-            jobInstance?.ExecuteManually();
+            _executor.StartAsync(jobInstance, new JobExecutionOptions { Trigger = ScheduledJobTrigger.User });
 
             return Rest(null);
         }
@@ -43,7 +47,7 @@ namespace TechFellow.ScheduledJobOverview.Controllers
 
             var instance = _repository.GetById(int.Parse(id));
             if(instance != null)
-                _repository.Get(instance.InstanceId).Stop();
+                _executor.Cancel(instance.InstanceId);
 
             return Rest(null);
         }

@@ -48,6 +48,7 @@
                     <th class="epitableheading" scope="col">Interval</th>
                     <th class="epitableheading" scope="col">Successful</th>
                     <th class="epitableheading" scope="col">Last execute date</th>
+                    <th class="epitableheading" scope="col">Duration</th>
                     <th class="epitableheading" scope="col">Type Name</th>
                     <th class="epitableheading" scope="col">Description</th>
                     <th class="epitableheading" scope="col">Actions</th>
@@ -55,7 +56,7 @@
                     <tbody>
                     <tr ng-repeat="job in vm.jobs | filter:vm.filter" ng-class="{'job-inactive': !job.isEnabled, 'job-deleted': !job.exists}">
                         <td style="text-align: center">
-                            <img src="<%= Paths.ToClientResource(typeof (JobRepository), "spinner.gif") %>" alt="{{job.isRunning}}" ng-show="job.isRunning"/>
+                            <img src="<%= Paths.ToClientResource(typeof (JobRepository), "spinner.gif") %>" alt="{{job.isRunning}}" title="{{job.lastMessage}}" ng-show="job.isRunning"/>
                         </td>
                         <td style="white-space: nowrap">{{job.name}}</td>
                         <td>
@@ -66,6 +67,7 @@
                             <toggle-bool target-prop="{{job.isLastExecuteSuccessful}}"/>
                         </td>
                         <td style="white-space: nowrap">{{job.lastExecuteDisplay}}</td>
+                        <td style="white-space: nowrap">{{job.lastDuration}}</td>
                         <td style="white-space: nowrap">{{job.typeName}}</td>
                         <td>{{job.description}}</td>
                         <td style="text-align: center; white-space: nowrap">
@@ -80,6 +82,9 @@
                             </span>
                             <span class="epi-cmsButton" ng-show="!job.exists">
                                 <input type="button" value="" alt="Delete" title="Delete" ng-click="vm.deleteJob(job.instanceId)" class="epi-cmsButton-tools epi-cmsButton-Delete">
+                            </span>
+                            <span class="epi-cmsButton">
+                                <input type="button" value="" alt="Stats" title="Stats" ng-click="vm.showStats(job.id)" class="epi-cmsButton-tools epi-cmsButton-Report">
                             </span>
                         </td>
                     </tr>

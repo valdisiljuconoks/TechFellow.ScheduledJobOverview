@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Threading;
 using EPiServer.Core;
+using EPiServer.DataAbstraction;
+using EPiServer.Personalization;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
 
@@ -8,10 +11,12 @@ namespace SampleWebApp
     [ScheduledPlugIn(DisplayName = "ScheduledJob2")]
     public class ScheduledJob2 : ScheduledJobBase
     {
+        private readonly IContentTypeRepository _repo;
         private bool _stopSignaled;
 
-        public ScheduledJob2()
+        public ScheduledJob2(IContentTypeRepository repo)
         {
+            _repo = repo;
             IsStoppable = true;
         }
 
@@ -33,6 +38,7 @@ namespace SampleWebApp
             OnStatusChanged(String.Format("Starting execution of {0}", this.GetType()));
 
             //Add implementation
+            Thread.Sleep(TimeSpan.FromSeconds(10));
 
             //For long running jobs periodically check if stop is signaled and if so stop execution
             if (_stopSignaled)
