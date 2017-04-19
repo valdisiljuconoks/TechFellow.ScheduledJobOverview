@@ -1,12 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduledJobOverview", "src\ScheduledJobOverview\ScheduledJobOverview.csproj", "{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2CAB9BF3-6265-4462-A118-718287193065}"
 	ProjectSection(SolutionItems) = preProject
+		build-packages.ps1 = build-packages.ps1
 		README.md = README.md
 	EndProjectSection
 EndProject
