@@ -11,6 +11,7 @@ namespace TechFellow.ScheduledJobOverview.modules._protected.TechFellow.Schedule
     {
         private readonly IScheduledJobLogRepository _logRepo;
         private readonly JobRepository _repo;
+
         protected IEnumerable<TimeSpan> durations;
         protected string jobName;
         protected IEnumerable<string> times;
@@ -35,6 +36,7 @@ namespace TechFellow.ScheduledJobOverview.modules._protected.TechFellow.Schedule
                                .GetAwaiter()
                                .GetResult()
                                .PagedResult
+                               .OrderBy(i => i.CompletedUtc)
                                .ToList();
 
             times = logs.Select(l => $"\"{l.CompletedUtc:yyyy-MM-dd HH:mm:ss}\"");
