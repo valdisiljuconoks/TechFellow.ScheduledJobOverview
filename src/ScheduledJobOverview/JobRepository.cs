@@ -55,7 +55,8 @@ namespace TechFellow.ScheduledJobOverview
                         LastDuration = lastLog!= null ? (lastLog.Duration.HasValue ? $"{lastLog.Duration.Value.Milliseconds}ms" : string.Empty) : string.Empty,
                         AssemblyName = plugin.AssemblyName,
                         TypeName = plugin.TypeName,
-                        IsRunning = job != null && job.IsRunning
+                        IsRunning = job != null && job.IsRunning,
+                        IsRestartable = job.Restartable
                     }).OrderBy(j => j.Name).ToList();
 
             // return distinct list
