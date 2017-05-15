@@ -47,6 +47,7 @@
                     <th class="epitableheading" scope="col">Enabled</th>
                     <th class="epitableheading" scope="col">Interval</th>
                     <th class="epitableheading" scope="col">Successful</th>
+                    <th class="epitableheading" scope="col">Restartable</th>
                     <th class="epitableheading" scope="col">Last execute date</th>
                     <th class="epitableheading" scope="col">Duration</th>
                     <th class="epitableheading" scope="col">Type Name</th>
@@ -59,13 +60,12 @@
                             <img src="<%= Paths.ToClientResource(typeof (JobRepository), "spinner.gif") %>" alt="{{job.isRunning}}" title="{{job.lastMessage}}" ng-show="job.isRunning"/>
                         </td>
                         <td style="white-space: nowrap">{{job.name}}</td>
-                        <td>
-                            <toggle-bool target-prop="{{job.isEnabled}}"/>
-                        </td>
+                        <td><toggle-bool target-prop="{{job.isEnabled}}"/></td>
                         <td style="white-space: nowrap">{{job.interval}}</td>
                         <td class="red-bold-{{job.isLastExecuteSuccessful}}">
                             <toggle-bool target-prop="{{job.isLastExecuteSuccessful}}"/>
                         </td>
+                        <td><toggle-bool target-prop="{{job.isRestartable}}"/></td>
                         <td style="white-space: nowrap">{{job.lastExecuteDisplay}}</td>
                         <td style="white-space: nowrap">{{job.lastDuration}}</td>
                         <td style="white-space: nowrap">{{job.typeName}}</td>

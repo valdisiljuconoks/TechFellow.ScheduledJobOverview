@@ -13,6 +13,7 @@ namespace TechFellow.ScheduledJobOverview.Models
         public DateTime? LastExecute { get; set; }
         public string LastExecuteDisplay => LastExecute?.ToString("yyyy-MM-dd HH:mm:ss") ?? string.Empty;
         public bool IsEnabled { get; set; }
+        public bool IsRestartable { get; set; }
         public bool? IsLastExecuteSuccessful { get; set; }
         public string Interval { get; set; }
         public bool IsRunning { get; set; }

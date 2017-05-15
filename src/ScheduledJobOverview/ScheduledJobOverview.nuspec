@@ -13,9 +13,8 @@
     <releaseNotes>EPiServer ScheduledJobs overview plugin. Added job execution time statistics collector.</releaseNotes>
     <copyright>Copyright 2017 (c) Valdis Iljuconoks, Tech Fellow</copyright>
     <tags>EPiServer ScheduledJob ScheduledJobs Jobs Scheduled Batch BackgroundJobs Background Overview Statistics</tags>
-    <dependencies>
-      <dependency id="EntityFramework" version="6.1.2" />
-      <dependency id="EPiServer.CMS.UI.Core" version="10.3.0" />
-    </dependencies>
   </metadata>
+  <files>
+    <file src="TechFellow.ScheduledJobOverview.zip" target="content\modules\_protected\TechFellow.ScheduledJobOverview" />
+  </files>
 </package>
