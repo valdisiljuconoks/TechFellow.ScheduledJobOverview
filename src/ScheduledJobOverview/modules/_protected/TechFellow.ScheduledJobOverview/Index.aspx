@@ -23,30 +23,30 @@
             text-decoration: line-through;
         }
 
-		.showArrow {
-			position: relative;
-			padding-right: 12px;
-			display: inline-block;
-		}
+        .showArrow {
+            position: relative;
+            padding-right: 12px;
+            display: inline-block;
+        }
 
-		.showArrow .arrow {
-			border: solid black;
-			border-width: 0 2px 2px 0;
-			position: absolute;
-			padding: 2px;
-			right: 2px;
-			top: 4px;
-		}
+        .showArrow .arrow {
+            border: solid black;
+            border-width: 0 2px 2px 0;
+            position: absolute;
+            padding: 2px;
+            right: 2px;
+            top: 4px;
+        }
 
-		.up {
-			transform: rotate(-135deg);
-			-webkit-transform: rotate(-135deg);
-		}
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
 
-		.down {
-			transform: rotate(45deg);
-			-webkit-transform: rotate(45deg);
-		}
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
     </style>
 
     <div class="epi-contentArea">
@@ -68,59 +68,59 @@
                 <table class="epi-default" style="border-collapse: collapse; border-style: none;">
                     <thead>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('isRunning')" ng-class="{'showArrow':vm.isSortType('isRunning')}">
-						Running
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('isRunning')" ng-class="{'showArrow':vm.isSortType('isRunning')}">
+                        Running
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('name')" ng-class="{'showArrow':vm.isSortType('name')}">
-						Name
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('name')" ng-class="{'showArrow':vm.isSortType('name')}">
+                    	Name
+                    	<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('isEnabled')" ng-class="{'showArrow':vm.isSortType('isEnabled')}">
-						Enabled
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('isEnabled')" ng-class="{'showArrow':vm.isSortType('isEnabled')}">
+                        Enabled
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('interval')" ng-class="{'showArrow':vm.isSortType('interval')}">
-						Interval
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('interval')" ng-class="{'showArrow':vm.isSortType('interval')}">
+                        Interval
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('isLastExecuteSuccessful')" ng-class="{'showArrow':vm.isSortType('isLastExecuteSuccessful')}">
-						Successful
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('isLastExecuteSuccessful')" ng-class="{'showArrow':vm.isSortType('isLastExecuteSuccessful')}">
+                        Successful
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('isRestartable')" ng-class="{'showArrow':vm.isSortType('isRestartable')}">
-						Restartable
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('isRestartable')" ng-class="{'showArrow':vm.isSortType('isRestartable')}">
+                        Restartable
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('lastExecuteDisplay')" ng-class="{'showArrow':vm.isSortType('lastExecuteDisplay')}">
-						Last execute date
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('lastExecuteDisplay')" ng-class="{'showArrow':vm.isSortType('lastExecuteDisplay')}">
+                        Last execute date
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('lastDuration')" ng-class="{'showArrow':vm.isSortType('lastDuration')}">
-						Duration
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('lastDuration')" ng-class="{'showArrow':vm.isSortType('lastDuration')}">
+                        Duration
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">
-					  <a href="#" ng-click="vm.setSort('typeName')" ng-class="{'showArrow':vm.isSortType('typeName')}">
-						Type Name
-						<span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
-					  </a>
-					</th>
+                      <a href="#" ng-click="vm.setSort('typeName')" ng-class="{'showArrow':vm.isSortType('typeName')}">
+                        Type Name
+                        <span ng-class="{'arrow up': !vm.sortReverse, 'arrow down': vm.sortReverse}"></span>
+                      </a>
+                    </th>
                     <th class="epitableheading" scope="col">Description</th>
                     <th class="epitableheading" scope="col">Actions</th>
                     </thead>
