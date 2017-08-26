@@ -218,9 +218,6 @@
     <EmbeddedResource Include="Migrations\201607272127111_InitialCreate.resx">
       <DependentUpon>201607272127111_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="modules\_protected\TechFellow.ScheduledJobOverview\site.min.js">
-      <DependentUpon>site.js</DependentUpon>
-    </EmbeddedResource>
     <None Include="modules\_protected\TechFellow.ScheduledJobOverview\site.js" />
     <None Include="modules\_protected\TechFellow.ScheduledJobOverview\angular.min.js" />
     <None Include="modules\_protected\TechFellow.ScheduledJobOverview\Index.aspx">

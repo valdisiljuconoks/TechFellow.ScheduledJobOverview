@@ -16,7 +16,7 @@
         .job-inactive {
             color: darkgrey;
         }
-        
+
         .job-deleted {
             color: grey;
             background-color: darksalmon;
