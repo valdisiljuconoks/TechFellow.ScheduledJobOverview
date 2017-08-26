@@ -32,6 +32,11 @@
             vm.stopJob = stopJob;
             vm.deleteJob = deleteJob;
             vm.showStats = showStats;
+            vm.setSort = setSort;
+            vm.isSortType = isSortType;
+            vm.sortType = ['-exists','+name']; // set the default sort type
+            vm.currentSortId = 'name'; // set the default sort type
+            vm.sortReverse = false;  // set the default sort order
 
             $http.defaults.headers.common['X-EpiRestAntiForgeryToken'] = antiForgeryToken;
 
@@ -74,6 +79,21 @@
 
             function showStats(id) {
                 $window.location.href = 'charts.aspx?pluginId=' + id;
+            }
+
+            function setSort(sortId) {
+                if (vm.currentSortId == sortId) {
+                    vm.sortReverse = !vm.sortReverse;
+                    vm.sortType = ['-exists', (vm.sortReverse ? '-' : '+') + vm.currentSortId]
+                } else {
+                    vm.currentSortId = sortId;
+                    vm.sortReverse = false;
+                    vm.sortType = ['-exists', '+' + vm.currentSortId]
+                }
+            }
+
+            function isSortType(sortId) {
+                return (vm.currentSortId == sortId);
             }
 
             $scope.$watch('vm.autoRefresh', function(newValue) {
