@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 using EPiServer.DataAbstraction;
 using EPiServer.PlugIn;
 using EPiServer.Scheduler;
@@ -52,7 +54,7 @@ namespace TechFellow.ScheduledJobOverview
                         IsLastExecuteSuccessful = job != null && !job.HasLastExecutionFailed ? true : (bool?)null,
                         LastExecute = job != null ? (job.LastExecution != DateTime.MinValue ? job.LastExecution : (DateTime?)null) : null,
                         LastMessage = job.LastExecutionMessage,
-                        LastDuration = lastLog!= null ? (lastLog.Duration.HasValue ? $"{lastLog.Duration.Value.Milliseconds}ms" : string.Empty) : string.Empty,
+                        LastDuration = lastLog?.Duration != null ? FormatTimeSpan(lastLog.Duration.Value) : string.Empty,
                         AssemblyName = plugin.AssemblyName,
                         TypeName = plugin.TypeName,
                         IsRunning = job != null && job.IsRunning,
@@ -105,6 +107,33 @@ namespace TechFellow.ScheduledJobOverview
         public JobDescriptionViewModel GetByInstanceId(Guid id)
         {
             return GetList().FirstOrDefault(j => j.InstanceId == id);
+        }
+
+        private string FormatTimeSpan(TimeSpan t)
+        {
+            var sb = new StringBuilder();
+            if (t.Days > 0)
+            {
+                sb.Append($"{t.Days}d ");
+            }
+            if (t.Hours > 0)
+            {
+                sb.Append($"{t.Hours}h ");
+            }
+            if (t.Minutes > 0)
+            {
+                sb.Append($"{t.Minutes}m ");
+            }
+            if (t.Seconds > 0)
+            {
+                sb.Append($"{t.Seconds}s ");
+            }
+            if (t.Milliseconds > 0)
+            {
+                sb.Append($"{t.Milliseconds}ms");
+            }
+
+            return sb.ToString();
         }
     }
 }
