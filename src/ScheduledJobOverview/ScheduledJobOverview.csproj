@@ -182,7 +182,6 @@
     <Compile Include="Const.cs" />
     <Compile Include="ControlExtensions.cs" />
     <Compile Include="DatabaseJobAdapter.cs" />
-    <Compile Include="InitializeModule.cs" />
     <Compile Include="Models\JobDescriptionViewModel.cs" />
     <Compile Include="modules\_protected\TechFellow.ScheduledJobOverview\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
