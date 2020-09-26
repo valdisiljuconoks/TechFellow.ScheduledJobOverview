@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,23 +25,26 @@ namespace TechFellow.ScheduledJobOverview
             var plugIns = PlugInLocator.Search(new ScheduledPlugInAttribute()).ToList();
 
             // get actual activated jobs (ran at least once)
-            var actual = from job in _repo.List()
-                          let type = Type.GetType($"{job.TypeName}, {job.AssemblyName}")
-                          select new JobDescriptionViewModel
-                                 {
-                                     Id = -1,
-                                     InstanceId = job.ID,
-                                     Name = job.Name,
-                                     Exists = false,
-                                     TypeName = job.TypeName,
-                                     AssemblyName = job.AssemblyName
-                          };
+            var actual =
+                from job in _repo.List()
+                let type = Type.GetType($"{job.TypeName}, {job.AssemblyName}")
+                select new JobDescriptionViewModel
+                {
+                    Id = -1,
+                    InstanceId = job.ID,
+                    Name = job.Name,
+                    Exists = false,
+                    TypeName = job.TypeName,
+                    AssemblyName = job.AssemblyName
+                };
 
             // get all scheduled jobs (even inactive)
-            var plugins = (from plugin in plugIns
-                           let job = _repo.List().FirstOrDefault(j => j.TypeName == plugin.TypeName && j.AssemblyName == plugin.AssemblyName)
-                           let attr = plugin.GetAttribute<ScheduledPlugInAttribute>()
-                           let lastLog = _logRepo.GetAsync(job.ID, 0, 1).GetAwaiter().GetResult().PagedResult.FirstOrDefault()
+            var plugins =
+                (from plugin in plugIns
+                    let job = _repo.List()
+                        .FirstOrDefault(j => j.TypeName == plugin.TypeName && j.AssemblyName == plugin.AssemblyName)
+                    let attr = plugin.GetAttribute<ScheduledPlugInAttribute>()
+                    let lastLog = _logRepo.GetAsync(job.ID, 0, 1).GetAwaiter().GetResult().PagedResult.FirstOrDefault()
                     select new JobDescriptionViewModel
                     {
                         Id = plugin.ID,
@@ -51,7 +54,8 @@ namespace TechFellow.ScheduledJobOverview
                         IsEnabled = job != null && job.IsEnabled,
                         Interval = job != null ? $"{job.IntervalLength} ({job.IntervalType})" : "",
                         IsLastExecuteSuccessful = job != null && !job.HasLastExecutionFailed ? true : (bool?)null,
-                        LastExecute = job != null ? (job.LastExecution != DateTime.MinValue ? job.LastExecution : (DateTime?)null) : null,
+                        LastExecute =
+                            job != null ? job.LastExecution != DateTime.MinValue ? job.LastExecution : (DateTime?)null : null,
                         LastMessage = job.LastExecutionMessage,
                         LastDuration = lastLog?.Duration != null ? FormatTimeSpan(lastLog.Duration.Value) : string.Empty,
                         AssemblyName = plugin.AssemblyName,
@@ -85,8 +89,7 @@ namespace TechFellow.ScheduledJobOverview
                 IsStaticMethod = true
             };
 
-            if (result.NextExecution == DateTime.MinValue)
-                result.NextExecution = DateTime.Today;
+            if (result.NextExecution == DateTime.MinValue) result.NextExecution = DateTime.Today;
 
             _repo.Save(result);
 
@@ -111,7 +114,7 @@ namespace TechFellow.ScheduledJobOverview
         private string FormatTimeSpan(TimeSpan t)
         {
             var sb = new StringBuilder();
-            
+
             if (t.Days > 0) sb.Append($"{t.Days}d ");
             if (t.Hours > 0) sb.Append($"{t.Hours}h ");
             if (t.Minutes > 0) sb.Append($"{t.Minutes}m ");
