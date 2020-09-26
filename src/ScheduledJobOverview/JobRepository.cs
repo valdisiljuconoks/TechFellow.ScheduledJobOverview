@@ -50,7 +50,7 @@ namespace TechFellow.ScheduledJobOverview
                         Id = plugin.ID,
                         InstanceId = job != null ? job.ID : Guid.Empty,
                         Name = attr.DisplayName,
-                        Description = attr.Description,
+                        Description = attr.Description.Cut(150),
                         IsEnabled = job != null && job.IsEnabled,
                         Interval = job != null ? $"{job.IntervalLength} ({job.IntervalType})" : "",
                         IsLastExecuteSuccessful = job != null && !job.HasLastExecutionFailed ? true : (bool?)null,
