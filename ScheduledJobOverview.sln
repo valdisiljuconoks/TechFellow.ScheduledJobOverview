@@ -1,12 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduledJobOverview", "src\ScheduledJobOverview\ScheduledJobOverview.csproj", "{CE78F8FE-D1BF-4E8F-A13C-A3A717B40A88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2CAB9BF3-6265-4462-A118-718287193065}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		build-packages.ps1 = build-packages.ps1
 		README.md = README.md
 	EndProjectSection
@@ -49,5 +52,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{453D3629-F676-4FBE-B013-D001866EBA8A} = {F5A26048-3FE4-467F-BA71-8CCCAD726A39}
 		{DD5C45FC-C2D8-4377-A587-758B33B2B0A3} = {F5A26048-3FE4-467F-BA71-8CCCAD726A39}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50BE3A36-9BD1-4224-A0E2-ACB5C4FFF0A0}
 	EndGlobalSection
 EndGlobal
